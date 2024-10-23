@@ -1,0 +1,18 @@
+.fontcolorwhite {
+    color: white!important;
+}
+.fontcolorblackbold {
+    font-weight: 600;
+}
+.backgroundcolor{
+    background-color: #ED713E;
+}
+.backgroundcolorsecondary {
+    background-color:  #5B5B5B!important;
+}
+.bordercolororange {
+    border: 0.7px solid #ED713E!important;
+}
+.fontcolororange {
+color: #ED713E;
+}
