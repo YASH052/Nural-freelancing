@@ -8,7 +8,7 @@ import {
   faArrowRightLong,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { MenuConstants } from "../MenuConstants";
+import { MenuConstants } from "../constant/MenuConstants";
 // import "../App.css";
 
 const SideMenu = () => {

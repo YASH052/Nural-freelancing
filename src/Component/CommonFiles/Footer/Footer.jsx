@@ -10,13 +10,13 @@ const Footer = () => {
         className="img-fluid"
         src="./footericon1.png"
         alt=""
-        style={{ width: "200px", height: "40px" }}
+        style={{ width: "200px", height: "30px" }}
       />
       <img
         className="img-fluid"
         src="./footericon2.png"
         alt=""
-        style={{ width: "200px", height: "40px" }}
+        style={{ width: "200px", height: "30px" }}
       />
     </Row>
   );

@@ -1,10 +1,9 @@
 import './App.css';
 import AllRoutes from './Component/RoutesFile/AllRoutes';
-import Sidebar from './Component/CommonFiles/Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import AuthRoutes from './Component/RoutesFile/AuthRoutes';
 import SideMenu from './Component/CommonFiles/Sidebar/SideMenu';
-import { Col,Container,Row } from 'react-bootstrap';
+import { Col,Row } from 'react-bootstrap';
 import Header from './Component/CommonFiles/Header/Header';
 import Footer from './Component/CommonFiles/Footer/Footer';
 
@@ -22,7 +21,7 @@ function App() {
         <>
           <Header />
           <SideMenu />
-          <Col>
+          <Col className="">
             <AllRoutes />
             <Footer />
           </Col>

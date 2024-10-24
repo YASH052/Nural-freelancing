@@ -3,28 +3,26 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Loader from '../CommonFiles/Loader';
 import ProtectedRoute from './ProtectedRoute';
+import { Row } from "react-bootstrap";
 import Notfound from '../CommonFiles/Notfound';
-import Mastersetting from '../Pages/Mastersetting';
-import Country from '../Pages/Locations/Country';
-import { Row } from 'react-bootstrap';
-import Region from '../Pages/Locations/Region';
-import State from '../Pages/Locations/State';
-import City from '../Pages/Locations/City';
-import Area from '../Pages/Locations/Area';
-import Brands from '../Pages/Products/Brands';
-import Category from '../Pages/Products/Category';
-import Model from '../Pages/Products/Model';
-import SubCategory from '../Pages/Products/Subcategory';
-import ViewPrice from '../Pages/Price/ViewPrice';
-import UploadPrice from '../Pages/Price/UploadPrice';
-import PriceList from '../Pages/Price/PriceList';
-import CreateTarget from '../Pages/Target/CreateTarget';
-import ViewTarget from '../Pages/Target/ViewTarget';
-import ISPincentive from '../Pages/ISP/ISPincentive';
-import Createisp from '../Pages/ISP/Createisp';
-import SKU from '../Pages/Products/SKU';
-import Access from '../Pages/Authenticate/LoginPage/Access';
-
+import Mastersetting from '../Pages/Master/MasterSetting/Mastersetting'
+import Country from '../Pages/Master/Locations/Country.jsx/Country';
+import Region from '../Pages/Master/Locations/Region/Region';
+import State from '../Pages/Master/Locations/State/State'
+import City from '../Pages/Master/Locations/City/City';
+import Area from '../Pages/Master/Locations/Area/Area';
+import Brands from '../Pages/Master/Products/Brand/Brands';
+import Category from '../Pages/Master/Products/Category/Category';
+import SubCategory from '../Pages/Master/Products/Subcategory/Subcategory';
+import Model from '../Pages/Master/Products/Model/Model';
+import ViewPrice from '../Pages/Master/Price/ViewPrice/ViewPrice';
+import UploadPrice from '../Pages/Master/Price/UploadPrice/UploadPrice';
+import SKU from '../Pages/Master/Products/SKU/SKU';
+import ISPincentive from '../Pages/SideMenuPages/ISPincentive/UploadISP/ISPincentive';
+import Createisp from '../Pages/SideMenuPages/ISPincentive/CreateISP/Createisp';
+import ViewTarget from '../Pages/SideMenuPages/Target/ViewTarget/ViewTarget';
+import CreateTarget from '../Pages/SideMenuPages/Target/CreateTarget/CreateTarget';
+import PriceList from '../Pages/Master/Price/PriceList/PriceList';
 
 // Will Implement this later how we can use Lazy loading for pages
 // const Dashboard = lazy(() => import('../Pages/Dashboard/Dashboard'));
@@ -36,7 +34,7 @@ const AllRoutes = () => {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/setting" element={<Mastersetting />} />
-            <Route path="/country" element={<Country />} />
+            <Route path="/country" element={<Country/>} />
             <Route path="/region" element={<Region />} />
             <Route path="/state" element={<State />} />
             <Route path="/city" element={<City />} />

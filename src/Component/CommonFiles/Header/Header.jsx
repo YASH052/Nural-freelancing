@@ -5,14 +5,12 @@ import {
   faBell,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate,} from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current route
-
   const handleSetting = () => {
     navigate("/setting"); // Navigate to the settings route
   };
@@ -21,11 +19,9 @@ const Header = () => {
   const handleSideMenu = () => {
     setShowSideMenu(!showSideMenu);
   };
-  const shouldShowSideMenu = location.pathname === "/header";
-
   return (
     <Container fluid>
-      <Row className="app-LandingPage-row p-0">
+      <Row className="p-0">
         <Col
           xxl={2}
           xl={2}
@@ -107,13 +103,6 @@ const Header = () => {
           />
         </Col>
       </Row>
-
-      {/* Render the SideMenu only when on the /setting route */}
-      {shouldShowSideMenu && showSideMenu && (
-        <Row>
-          <SideMenu />
-        </Row>
-      )}
     </Container>
   );
 };
