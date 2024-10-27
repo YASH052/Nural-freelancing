@@ -2,160 +2,182 @@ import {
   Row,
   Col,
   Button,
-  InputGroup,
-  Dropdown,
-  FormControl,
+  Table,
+   
 } from "react-bootstrap";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
- 
-
-
 import {
-  faLightbulb,
-  faPenToSquare,
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+ import TextField from "@mui/material/TextField";
+ import Autocomplete from "@mui/material/Autocomplete";
+ import { useNavigate } from "react-router-dom";
+
+
+ let data = [];
+
+ // Sample data for SKU records
+const skuData = [
+  {
+    sNo: 1,
+    category: "Electronics",
+    subCategory: "Mobile",
+    model: "iPhone 13",
+    skuName: "Apple iPhone 13 - 128GB",
+    actions: ["./action2.png", "./action1.png"],
+  },
+  {
+    sNo: 2,
+    category: "Electronics",
+    subCategory: "Laptop",
+    model: "MacBook Pro",
+    skuName: "Apple MacBook Pro - M1",
+    actions: ["./action2.png", "./action1.png"],
+  },
+  {
+    sNo: 3,
+    category: "Appliances",
+    subCategory: "Washing Machine",
+    model: "Samsung EcoBubble",
+    skuName: "Samsung EcoBubble - 7kg",
+    actions: ["./action2.png", "./action1.png"],
+  },
+];
+
+
 const SKU = () => {
+  const navigate = useNavigate();
+   const handleSetting = () => {
+     navigate("/setting"); // Navigate to the settings route
+   };
+  const defaultProps = {
+    options: data,
+    getOptionLabel: (option) => option.title,
+  };
   return (
     <>
-      <Row className="mt-1 ms-0 fontcolorblackbold borderbottom ">
-        Masters {">"} {MenuConstants.SKU}
-      </Row>
+      <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom   ">
+        <span className="cursorpointer" onClick={handleSetting}>
+          {MenuConstants.master}
+        </span>{" "}
+        {">"} {MenuConstants.SKU}
+      </Col>
       <Row className="ms-2 mt-2">
         <Col
           xxl={2}
           xl={2}
           lg={2}
           md={2}
-          className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-LandingPage-locations"
+          className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format "
         >
-          Manage {MenuConstants.SKU}
+          {MenuConstants.manage} {MenuConstants.SKU}
         </Col>
         <Row className="app-country-box ms-0">
           <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-4 mt-3">Brand</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
+            <Row className="ms-3 mt-3">{MenuConstants.brand}</Row>
+            <Col className="ms3 mt-1">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
             </Col>
           </Col>
           <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-4 mt-3">Category</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
+            <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
+            <Col className="ms3 mt-1">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
             </Col>
           </Col>
           <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-4 mt-3">SubCategory</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
+            <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
+            <Col className="ms3 mt-1">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
             </Col>
           </Col>
 
           <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-4 mt-3">Model</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
+            <Row className="ms-3 mt-3">{MenuConstants.model}</Row>
+            <Col className="ms3 mt-1">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
             </Col>
           </Col>
           <Row>
             <Col xxl={3} xl={3} lg={3} md={3}>
-              <Row className="ms-4 mt-3">SKU Name</Row>
-              <Col className="ms-4 mb-3">
-                <input
-                  type="text"
-                  className="form-control app-placeholder" // Bootstrap class for styling input
+              <Row className="ms-3 mt-3">
+                {MenuConstants.SKU} {MenuConstants.name}
+              </Row>
+              <Col className="ms-3 mb-3">
+                <TextField
+                  id="standard-basic"
+                  className="mt-1 app-input-width"
+                  variant="standard"
                 />
               </Col>
             </Col>
             <Col xxl={3} xl={3} lg={3} md={3}>
-              <Row className="ms-4 mt-3">SKU Code</Row>
+              <Row className="ms-4 mt-3">
+                {MenuConstants.SKU} {MenuConstants.code}
+              </Row>
               <Col className="ms-4 mb-3">
-                <input
-                  type="text"
-                  className="form-control app-placeholder" // Bootstrap class for styling input
+                <TextField
+                  id="standard-basic"
+                  className="mt-1 app-input-width"
+                  variant="standard"
                 />
               </Col>
             </Col>
           </Row>
-          <Row className="ms-2 mb-4">
+          <Row className="ms-1 mt-4 mb-4">
             <Col xxl={2} xl={2} lg={2} md={2}>
-              <Button className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+              <Button className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                 {MenuConstants.create}
               </Button>
             </Col>
             <Col>
-              <Button className="bordercolororange cursorpointer mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+              <Button className="bordercolororange cursorpointer mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                 {MenuConstants.cancel}
               </Button>
             </Col>
@@ -168,193 +190,136 @@ const SKU = () => {
           xl={2}
           lg={2}
           md={2}
-          className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+          className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
         >
           {MenuConstants.list}
         </Col>
         <Row className="app-country-box ms-0 p-0 position-relative">
-          <Col xxl={2} xl={2} lg={2} md={2}>
-            <Row className="ms-4 mt-3">Brand</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="Select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
-            </Col>
-          </Col>
-          <Col xxl={2} xl={2} lg={2} md={2}>
-            <Row className="ms-4 mt-3">Category</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="Select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
-            </Col>
-          </Col>
-          <Col xxl={2} xl={2} lg={2} md={2}>
-            <Row className="ms-4 mt-3">SubCategory</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="Select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
-            </Col>
-          </Col>
-
-          <Col xxl={2} xl={2} lg={2} md={2}>
-            <Row className="ms-4 mt-3">Model</Row>
-            <Col className="ms-4 mb-3">
-              <InputGroup>
-                <FormControl
-                  type="text"
-                  placeholder="Select"
-                  className="form-control app-placeholder"
-                />
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline-none"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </InputGroup>
-            </Col>
-          </Col>
-
-          <Col
-            xxl={2}
-            xl={2}
-            lg={2}
-            md={2}
-            className="cursorpointer position-absolute end-0 mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-LandingPage-locations"
-          >
-            Search
-          </Col>
-
-          <Row className="backgroundcolor fontcolorwhite ms-0 mt-4 mb-2">
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              S.No
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              Category
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              SubCategory
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              Model
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              {MenuConstants.SKU}
-            </Col>
-            <Col>Action</Col>
-          </Row>
-
-          <Row className="ms-0 app-placeholder">
-            <Col className="" xxl={2} xl={2} lg={2} md={2}>
-              xxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col>
-              <FontAwesomeIcon
-                className="cursorpointer"
-                icon={faLightbulb}
-                style={{ color: "#FFD43B" }}
-              />{" "}
-              <FontAwesomeIcon
-                className="cursorpointer"
-                icon={faPenToSquare}
-                style={{ color: "#74C0FC" }}
+          <Col>
+            <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
+            <Col className="ms3 mt-2">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
               />
             </Col>
-          </Row>
-          <Row className="ms-0 app-placeholder ">
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              xxxxxxxxx
-            </Col>
-            <Col>
-              <FontAwesomeIcon
-                className="cursorpointer"
-                icon={faLightbulb}
-                style={{ color: "#FFD43B" }}
-              />{" "}
-              <FontAwesomeIcon
-                className="cursorpointer"
-                icon={faPenToSquare}
-                style={{ color: "#74C0FC" }}
+          </Col>
+
+          <Col>
+            <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
+            <Col className="ms3 mt-2">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
               />
             </Col>
-          </Row>
-          <Row className="mt-5 d-flex align-items-center justify-content-center text-center mb-3">
+          </Col>
+          <Col>
+            <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
+            <Col className="ms3 mt-2">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
+            </Col>
+          </Col>
+
+          <Col>
+            <Row className="ms-3 mt-3">{MenuConstants.model}</Row>
+            <Col className="ms3 mt-2">
+              <Autocomplete
+                {...defaultProps}
+                id="disable-close-on-select"
+                disableCloseOnSelect
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
+                )}
+              />
+            </Col>
+          </Col>
+
+          <Col className="cursorpointer  mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format ">
+            {MenuConstants.search}
+          </Col>
+
+          <Table className="mt-5">
+            <thead className="backgroundcolor fontcolorwhite">
+              <tr>
+                <th className="backgroundcolor fontcolorwhite">S.No</th>
+                <th className="backgroundcolor fontcolorwhite">
+                  {MenuConstants.category}
+                </th>
+                <th className="backgroundcolor fontcolorwhite">
+                  {MenuConstants.subCategory}
+                </th>
+                <th className="backgroundcolor fontcolorwhite">
+                  {MenuConstants.model}
+                </th>
+                <th className="backgroundcolor fontcolorwhite">
+                  {MenuConstants.SKU}
+                </th>
+                <th className="backgroundcolor fontcolorwhite">
+                  {MenuConstants.action}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {skuData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.sNo}</td>
+                  <td>{item.category}</td>
+                  <td>{item.subCategory}</td>
+                  <td>{item.model}</td>
+                  <td>{item.skuName}</td>
+                  <td>
+                    {item.actions.map((action, idx) => (
+                      <img
+                        key={idx}
+                        src={action}
+                        className="cursor-pointer"
+                        alt="Action"
+                        style={{
+                          width: idx === 0 ? "15px" : "20px",
+                          height: "15px",
+                          marginRight: idx === 0 ? "5px" : "0px",
+                        }}
+                      />
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <Row className="  app-pageformat mt5 mb3">
             <Col xs="auto">
               First {MenuConstants.page}
               <span

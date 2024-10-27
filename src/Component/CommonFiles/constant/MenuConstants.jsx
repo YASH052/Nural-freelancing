@@ -76,6 +76,7 @@ export const MenuConstants = {
   userMasters: "User Masters",
   bulkUploadMapping: "Bulk Upload Mapping",
   priceGroup: "Price Group",
+  pricelist: "Price List",
   manageLeaveTypes: "Manage Leave Types",
   leaveAllocation: "Leave Allocation",
   ISPmaster: "ISP Master",

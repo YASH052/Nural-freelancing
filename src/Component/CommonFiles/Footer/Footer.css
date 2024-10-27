@@ -1,0 +1,10 @@
+.app-footer-logo-custom {
+  width: 200px;
+  height: 30px;
+  justify-content: center;
+  text-align: center;
+}
+.footerbg{
+    background-color: #faf7ff;
+    justify-content: center;
+}

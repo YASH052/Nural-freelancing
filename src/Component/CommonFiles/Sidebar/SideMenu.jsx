@@ -39,12 +39,12 @@ const SideMenu = () => {
   };
   return (
     <Col
-      className={`app-sidemenu-col sidemenuborder sidemenubg ${
+      className={`app-sidemenu-col sidemenuborder col-md-3 col-sm-3 col-lg-2 sidemenubg ${
         showMenu ? "sidemenuwidth  " : "sidemenubg col-lg-2"
       }`}
     >
       <Col
-        className={`align-items-center d-flex mediumfontbold fontcolorwhite app-sidemenu-mainmenu ${
+        className={`align-items-center d-flex mediumfontbold  fontcolorwhite app-sidemenu-mainmenu ${
           showMenu ? "sidemenuwidth backgroundcolor " : "backgroundcolor"
         }`}
       >
@@ -81,12 +81,12 @@ const SideMenu = () => {
             />
             {MenuConstants.transaction}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={transactionOpen ? faChevronUp : faChevronDown}
             />
           </Col>
           {transactionOpen && (
-            <Col className="ms-3 mt-2">
+            <Col className="ms-2 mt-2">
               <Col className="mediumfont cursorpointer">
                 <FontAwesomeIcon icon={faArrowRightLong} />{" "}
                 {MenuConstants.uploadPrimarySales}
@@ -110,7 +110,7 @@ const SideMenu = () => {
               <Col className="ms-2">
                 <img
                   className="me-2 fontcolorwhite"
-                  src="./targetw.png"
+                  src="./Targetw.png"
                   alt=""
                   style={{ width: "20px", height: "20px" }}
                 />
@@ -144,17 +144,19 @@ const SideMenu = () => {
             />
             {MenuConstants.transactionReturn}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={transactionReturnOpen ? faChevronUp : faChevronDown}
             />
           </Col>
           {transactionReturnOpen && (
-            <Col className="ms-4 mt-2">
+            <Col className="ms-2 mt-2">
               <Col className="cursorpointer mediumfont">
-                {MenuConstants.submenu1}
+                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+                {MenuConstants.uploadPrimarySales} Return
               </Col>
               <Col className="cursorpointer mediumfont">
-                {MenuConstants.submenu2}
+                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+                {MenuConstants.upload} Sec Sales Return
               </Col>
             </Col>
           )}
@@ -165,7 +167,7 @@ const SideMenu = () => {
               <Col className="ms-2">
                 <img
                   className="me-2 fontcolorwhite "
-                  src="./ispwhite.png"
+                  src="./incentivew.png"
                   alt=""
                   style={{ width: "20px", height: "20px" }}
                 />
@@ -198,7 +200,7 @@ const SideMenu = () => {
             />
             {MenuConstants.merchandizing}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={merchandizingOpen ? faChevronUp : faChevronDown}
             />
           </Col>
@@ -230,7 +232,7 @@ const SideMenu = () => {
             />
             {MenuConstants.competition}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={competitionOpen ? faChevronUp : faChevronDown}
             />
           </Col>
@@ -256,7 +258,7 @@ const SideMenu = () => {
             />
             {MenuConstants.learningAndDevelopment}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={learningOpen ? faChevronUp : faChevronDown}
             />
           </Col>
@@ -297,7 +299,7 @@ const SideMenu = () => {
             />
             {MenuConstants.bulletin}
             <FontAwesomeIcon
-              className="position-absolute end-0 me-1"
+              className="position-absolute end-0 me-2"
               icon={bulletinOpen ? faChevronUp : faChevronDown}
             />
           </Col>

@@ -3,14 +3,28 @@ import {
   Col,
   Button,
   Container,
-  InputGroup,
-  Dropdown,
-  FormControl,
+  Table,
+  Form,
+   
 } from "react-bootstrap";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
- 
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+let data = [];
+const datas = [
+  {
+    serial: "1",
+    brand: "Brand A",
+    actions: ["./action2.png", "./action1.png"],
+  },
+  {
+    serial: "2",
+    brand: "Brand B",
+    actions: ["./action2.png", "./action1.png"],
+  },
+];
 
 import {
   
@@ -18,8 +32,8 @@ import {
   faArrowRight,
   
 } from "@fortawesome/free-solid-svg-icons";
-
 import { useNavigate } from "react-router-dom";
+import { FormControl, Input, InputLabel } from "@mui/material";
 const Brands = () => {
   const [selectedBrand, setSelectedBrand] = useState("Brand"); // Initial placeholder text
 
@@ -27,6 +41,14 @@ const Brands = () => {
     setSelectedBrand(event.target.textContent); // Update the placeholder with selected dropdown item
   };
 
+   const handleSubmit = (e) => {
+     e.preventDefault();
+     // Add form submission logic here
+   };
+ const defaultProps = {
+   options: data,
+   getOptionLabel: (option) => option.title,
+ };
   const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting"); // Navigate to the settings route
@@ -41,77 +63,98 @@ const Brands = () => {
             </span>{" "}
             {">"} {MenuConstants.brand}
           </Col>
-          <Row className="ms-4 mt-2">
+          <Row className="ms2 mt-2">
             <Col
               xxl={2}
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.manage} {MenuConstants.brand}
             </Col>
             <Row className="app-country-box ms-0">
-              <Row className="ms-4 mt-3">Brand</Row>
-              <Col xxl={2} xl={2} lg={2} md={2} className="ms-4 mb-3">
-                <input
-                  type="text"
-                  className="form-control app-placeholder" // Bootstrap class for styling input
-                />
-              </Col>
-              <Row className="ms-4 mt-3">{MenuConstants.description}</Row>
-              <Col className="ms-4 mb-3">
-                <input
-                  type="text"
-                  className="form-control app-placeholder" // Bootstrap class for styling input
-                />
-              </Col>
-              <Row className="ms-2 mb-4">
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
-                    {MenuConstants.create}
-                  </Button>
-                </Col>
-                <Col>
-                  <Button className="bordercolororange backgroundcolorsecondarybuttons cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
-                    {MenuConstants.cancel}
-                  </Button>
-                </Col>
-              </Row>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group
+                  // as={Row}
+                  className="ms-2 mt-3"
+                  controlId="formBrandName"
+                >
+                  <Form.Label column className="ms2">
+                    Brand
+                  </Form.Label>
+                  <Col xxl={3} xl={3} lg={3} md={3} className="ms2 mb-3">
+                    <FormControl>
+                      <Input
+                        id="my-input"
+                        aria-describedby="my-helper-text"
+                        className="app-input-width"
+                      />
+                    </FormControl>
+                  </Col>
+                </Form.Group>
+
+                <Form.Group
+                  // as={Row}
+                  className="ms-2 mt-3"
+                  controlId="formDescription"
+                >
+                  <Form.Label column className="ms2">
+                    {MenuConstants.description}
+                  </Form.Label>
+                  <Row className="ms2 mb-3">
+                    <FormControl>
+                      <Input id="my-input" aria-describedby="my-helper-text" />
+                    </FormControl>
+                  </Row>
+                </Form.Group>
+
+                <Row className="ms-2 mb-4">
+                  <Col xxl={2} xl={2} lg={2} md={2}>
+                    <Button
+                      type="submit"
+                      className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format "
+                    >
+                      {MenuConstants.create}
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button
+                      type="button"
+                      className="bordercolororange backgroundcolorsecondarybuttons cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format "
+                    >
+                      {MenuConstants.cancel}
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
             </Row>
           </Row>
-          <Row className="ms-4 mt-4 mb-5">
+          <Row className="ms2 mt-4 mb-5">
             <Col
               xxl={2}
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 position-relative">
               <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
-              <Col xxl={2} xl={2} lg={2} md={2} className="ms-4 mb-3">
-                <InputGroup>
-                  <FormControl
-                    type="text"
-                    placeholder={selectedBrand} // Dynamically set the placeholder
-                    className="form-control app-placeholder"
-                    readOnly // Make it read-only to prevent manual text input
-                  />
-                  <Dropdown onSelect={handleSelect}>
-                    <Dropdown.Toggle
-                      variant="outline-none"
-                      id="dropdown-basic"
-                    ></Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item eventKey="1">Brand 1</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Brand 2</Dropdown.Item>
-                      <Dropdown.Item eventKey="3">Brand 3</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </InputGroup>
+              <Col xxl={3} xl={3} lg={3} md={3} sm={3} className="ms3 mt-1">
+                <Autocomplete
+                  {...defaultProps}
+                  id="disable-close-on-select"
+                  disableCloseOnSelect
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="standard"
+                      className="ms-2 app-input-width"
+                    />
+                  )}
+                />
               </Col>
               <Col
                 xxl={2}
@@ -120,97 +163,53 @@ const Brands = () => {
                 md={2}
                 sm={2}
                 xs={2}
-                className="cursorpointer position-absolute end-0 mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-LandingPage-locations"
+                className="cursorpointer position-absolute end-0 mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format "
               >
                 {MenuConstants.search}
               </Col>
 
-              <Row className="backgroundcolor fontcolorwhite ms-0 mt-4 mb-2">
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  S.No
-                </Col>
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  {MenuConstants.brand}
-                </Col>
-                <Col>{MenuConstants.action}</Col>
-              </Row>
-
-              <Row className="ms-0 app-placeholder">
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  xxx
-                </Col>
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  xxxxxxxxx
-                </Col>
-                <Col>
-                  <img
-                    src="./action2.png"
-                    className="cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "15px", height: "15px" }}
-                  />{" "}
-                  <img
-                    src="./action1.png"
-                    className="me-2 cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "20px", height: "20px" }}
-                  />{" "}
-                </Col>
-              </Row>
-              <Row className="ms-0 app-placeholder">
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  xxx
-                </Col>
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  xxxxxxxxx
-                </Col>
-                <Col>
-                  <img
-                    src="./action2.png"
-                    className="cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "15px", height: "15px" }}
-                  />{" "}
-                  <img
-                    src="./action1.png"
-                    className="me-2 cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "20px", height: "20px" }}
-                  />{" "}
-                </Col>
-              </Row>
-              <Row className="mt-5 d-flex align-items-center justify-content-center text-center mb-3">
+              <Table className="mt-5">
+                <thead>
+                  <tr>
+                    <th className="backgroundcolor fontcolorwhite">S.No</th>
+                    <th className="backgroundcolor fontcolorwhite">Brand</th>
+                    <th className="backgroundcolor fontcolorwhite">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {datas.map((item, index) => (
+                    <tr key={index} className="">
+                      <td>{item.serial}</td>
+                      <td>{item.brand}</td>
+                      <td>
+                        {item.actions.map((action, idx) => (
+                          <img
+                            key={idx}
+                            src={action}
+                            className={`cursorpointer ${
+                              idx === 0 ? "me-1" : ""
+                            }`}
+                            alt="Action"
+                            style={{
+                              width: idx === 0 ? "15px" : "20px",
+                              height: "15px",
+                            }}
+                          />
+                        ))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Row className="  app-pageformat mt5 mb3">
                 <Col xs="auto">
                   First {MenuConstants.page}
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </span>{" "}
                   {MenuConstants.page}
-                  <span
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    1
-                  </span>{" "}
-                  out of xx
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="app-pageformat-style">1</span> out of xx
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowRight} />
                   </span>{" "}
                   Last {MenuConstants.page}

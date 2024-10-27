@@ -16,6 +16,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
+import { Autocomplete, TextField } from "@mui/material";
  
 
 const CreateTarget = () => {
@@ -43,6 +44,11 @@ const CreateTarget = () => {
   const handleTarget = () => {
     navigate("/viewtarget"); // Navigate to the settings route
   };
+  let data = [];
+  const defaultProps = {
+    options: data,
+    getOptionLabel: (option) => option.title,
+  };
   return (
     <Container fluid>
       <Row className="mb-5">
@@ -59,7 +65,7 @@ const CreateTarget = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.create} {MenuConstants.target}
             </Col>
@@ -68,7 +74,7 @@ const CreateTarget = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer  position-absolute end-0 me-3  bordercolororange mediumfontbold app-LandingPage-locations"
+              className="cursorpointer  position-absolute end-0 me-3  bordercolororange mediumfontbold app-btns-format "
               onClick={handleTarget}
             >
               {MenuConstants.view} {MenuConstants.target}
@@ -77,117 +83,80 @@ const CreateTarget = () => {
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3">Save/ Update</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="target"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">save</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">update</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.target} Name</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="target"
-                      className="form-control app-placeholder"
-                    />
-                  </InputGroup>
+                  <TextField
+                    variant="standard"
+                    className="mt-1 app-input-width"
+                  />
                 </Col>
               </Col>
 
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.target} For</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="Target"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Row className="mt-3">
                 <Col xxl={3} xl={3} lg={3} md={3}>
                   <Row className="ms-4"> {MenuConstants.target} Type</Row>
                   <Col className="ms-4 mb-3">
-                    <InputGroup>
-                      <FormControl
-                        type="text"
-                        placeholder="target"
-                        className="form-control app-placeholder"
-                      />
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="outline-none"
-                          id="dropdown-basic"
-                        ></Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item href="#/action-1">
-                            Quantity
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Value</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </InputGroup>
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
                   </Col>
                 </Col>
                 <Col xxl={3} xl={3} lg={3} md={3}>
                   <Row className="ms-4">Template Category</Row>
                   <Col className="ms-4 mb-3">
-                    <InputGroup>
-                      <FormControl
-                        type="text"
-                        placeholder="target"
-                        className="form-control app-placeholder"
-                      />
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="outline-none"
-                          id="dropdown-basic"
-                        ></Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item href="#/action-1">
-                            category {MenuConstants.wise}
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
-                            product {MenuConstants.wise}
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
-                            model {MenuConstants.wise}
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
-                            {MenuConstants.SKU} {MenuConstants.wise}
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">WOD</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </InputGroup>
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
                   </Col>
                 </Col>
                 <Col className="ms-4">
@@ -217,27 +186,20 @@ const CreateTarget = () => {
                   </Col>
                 </Col>
                 <Col xxl={3} xl={3} lg={3} md={3}>
-                  <Row className="ms-4">Template Category</Row>
+                  <Row className="ms-4">Target Base On</Row>
                   <Col className="ms-4 mb-3">
-                    <InputGroup>
-                      <FormControl
-                        type="text"
-                        placeholder="target"
-                        className="form-control app-placeholder"
-                      />
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="outline-none"
-                          id="dropdown-basic"
-                        ></Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item href="#/action-1">sale</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
-                            purchase
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </InputGroup>
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
                   </Col>
                 </Col>
               </Row>
@@ -265,12 +227,12 @@ const CreateTarget = () => {
 
               <Row className="ms-2 mb-4 mt-3">
                 <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.upload}
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.cancel}
                   </Button>
                 </Col>

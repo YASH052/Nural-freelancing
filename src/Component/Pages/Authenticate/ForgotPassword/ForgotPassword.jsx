@@ -1,75 +1,94 @@
-import React from "react";
-import { Card, Col, Form, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Card,
+  Col,
+  Form,
+  Container,
+  Row,
+  Button,
+  Alert,
+} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
-  const handleLoginPage = () => {
-    navigate("/login"); // Navigate to the settings route
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleSubmit = () => {
+    if (!username && !email) {
+      setError("Please enter either username or email.");
+      setShowAlert(true);
+      return;
+    }
+    // Proceed with password reset logic
+    navigate("/login");
   };
 
   return (
     <Container
       fluid
       className="app-access-maincontainer d-flex align-items-center justify-content-center"
-      style={{ height: "100vh" }} // Set height to full viewport
+      style={{ height: "100vh" }}
     >
       <Container>
         <Row
           className="d-flex align-items-center justify-content-center"
           style={{ height: "100%" }}
         >
-          <Col className="">
+          <Col>
             <Card className="app-access-container p-5">
               <Col className="mx-auto">company logo</Col>
               <Col className="mt-5 mx-auto mediumfontbold">
                 Login to your account
               </Col>
-              <Col className="mt-2 ">Enter user Name</Col>
-              <Row style={{}}>
-                <input
-                  className="text-input mt-2 ms-2 p-2"
-                  // value={credentials.email}
-                  // onChange={onChange}
-                  type="username"
-                  id="username"
-                  name="username"
-                  placeholder="User Name"
-                  required=""
-                />
-              </Row>
-              <Row className="mt-2 mx-auto">OR</Row>
-              <Col className="mt-2">Enter Email ID</Col>
-              <Row style={{}}>
-                <input
-                  className="text-input mt-2 ms-2 p-2"
-                  // value={credentials.email}
-                  // onChange={onChange}
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="email"
-                  required=""
-                />
-              </Row>
-              <Row>
-                <Col
-                  className="mt-2 fontcolororange mediumfont text-end cursorpointer"
-                  onClick={handleLoginPage}
+              {showAlert && (
+                <Alert
+                  variant="danger"
+                  onClose={() => setShowAlert(false)}
+                  dismissible
                 >
-                  Back
-                </Col>
-              </Row>
-              <Col
-                lg={12}
-                xxl={12}
-                md={12}
-                xl={12}
-                className="fontcolorwhite cursorpointer mediumfontbold d-flex mt-3 align-items-center justify-content-center ms-2 app-access-continuebtn backgroundcolorsecondary bordercolororange p-2"
-                onClick={handleLoginPage}
-              >
-                Submit
-              </Col>
+                  {error}
+                </Alert>
+              )}
+              <Form>
+                <Form.Group controlId="username" className="mt-4">
+                  <Form.Label>Enter Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Form.Group>
+                <Row className="mt-3 align-items-center justify-content-center">OR</Row>
+                <Form.Group controlId="email" className="mt-2">
+                  <Form.Label>Enter Email ID</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+                <Row>
+                  <Col
+                    className="mt-1 fontcolororange mediumfont text-end cursorpointer"
+                    onClick={() => navigate("/login")}
+                  >
+                    Back
+                  </Col>
+                </Row>
+                <Button
+                  variant="primary"
+                  className="w-100 mt-4 backgroundcolorsecondary bordercolororange p-2"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
+              </Form>
             </Card>
           </Col>
           <Col lg={5} md={5} xl={5}>

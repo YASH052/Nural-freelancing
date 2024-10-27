@@ -1,20 +1,52 @@
-import React from "react";
-import { Card, Col, Form, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Card,
+  Col,
+  Form,
+  Container,
+  Row,
+  Button,
+  Alert,
+} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const handleHomePage = () => {
-    navigate("/setting"); // Navigate to the settings route
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" });
   };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.username) newErrors.username = "Username is required";
+    if (!formData.password) newErrors.password = "Password is required";
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    navigate("/setting");
+  };
+
   const handlePasswordChange = () => {
-    navigate("/forgotPassword"); // Navigate to the settings route
+    navigate("/forgotPassword");
   };
+
   return (
     <Container
       fluid
       className="app-access-maincontainer d-flex align-items-center justify-content-center"
-      style={{ height: "100vh" }} // Set height to full viewport
+      style={{ height: "100vh" }}
     >
       <Container>
         <Row
@@ -27,58 +59,64 @@ const Login = () => {
               <Col className="mt-5 mx-auto mediumfontbold">
                 Login to your account
               </Col>
-              <Col className="mt-3">user Name</Col>
-              <Row style={{}}>
-                <input
-                  className="text-input mt-3 ms-2 p-2"
-                  // value={credentials.email}
-                  // onChange={onChange}
-                  type="username"
-                  id="username"
-                  name="username"
-                  placeholder="User Name"
-                  required=""
-                />
-              </Row>
-              <Col className="mt-3 mb-1">Password</Col>
-              <Row style={{}}>
-                <input
-                  className="text-input mt-2 ms-2 p-2"
-                  // value={credentials.email}
-                  // onChange={onChange}
-                  type="Password"
-                  id="Password"
-                  name="Password"
-                  placeholder="Password"
-                  required=""
-                />
-              </Row>
-              <Row>
-                <Col className="">
-                  <Form.Group
-                    className="mt-2 mediumfont"
-                    controlId="formBasicCheckbox"
-                  >
-                    <Form.Check type="checkbox" label="Remember Me" />
-                  </Form.Group>
-                </Col>
-                <Col
-                  className="mt-2 mediumfont text-end cursorpointer"
-                  onClick={handlePasswordChange}
+              {showAlert && (
+                <Alert
+                  variant="danger"
+                  onClose={() => setShowAlert(false)}
+                  dismissible
                 >
-                  Forget Password
-                </Col>
-              </Row>
-              <Col
-                lg={12}
-                xxl={12}
-                md={12}
-                xl={12}
-                className="fontcolorwhite cursorpointer mediumfontbold d-flex align-items-center justify-content-center mt-5 ms-2 app-access-continuebtn backgroundcolorsecondary bordercolororange p-2"
-                onClick={handleHomePage}
-              >
-                Login
-              </Col>
+                  Incorrect username or password
+                </Alert>
+              )}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="username" className="mt-3">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter username"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    isInvalid={!!errors.username}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.username}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="password" className="mt-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    isInvalid={!!errors.password}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Row className="mt-3">
+                  <Col>
+                    <Form.Check type="checkbox" label="Remember Me" />
+                  </Col>
+                  <Col
+                    className="text-end cursorpointer"
+                    onClick={handlePasswordChange}
+                  >
+                    Forget Password
+                  </Col>
+                </Row>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="w-100 fontcolorwhite cursorpointer mediumfontbold d-flex align-items-center justify-content-center mt-5 app-access-continuebtn backgroundcolorsecondary bordercolororange p-2"
+                  onClick={handleSubmit}
+                >
+                  Login
+                </Button>
+              </Form>
             </Card>
           </Col>
           <Col lg={5} md={5} xl={5}>
@@ -89,7 +127,7 @@ const Login = () => {
               <img
                 className="me-2 fontcolorwhite"
                 src="./sidelogo.jpg"
-                alt=""
+                alt="ISP Logo"
                 style={{ width: "400px", height: "300px" }}
               />
             </Col>
@@ -97,7 +135,7 @@ const Login = () => {
               <img
                 className="fontcolorwhite"
                 src="./sidelogo2.jpg"
-                alt=""
+                alt="Secondary Logo"
                 style={{ width: "150px", height: "40px" }}
               />
             </Col>

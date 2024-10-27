@@ -11,12 +11,20 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+ import TextField from "@mui/material/TextField";
+ import Autocomplete from "@mui/material/Autocomplete";
+ let data = [];
+
 
 const UploadPrice = () => {
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState(
     MenuConstants.nofileselected
   );
+  const defaultProps = {
+    options: data,
+    getOptionLabel: (option) => option.title,
+  };
 
   const handleButtonClick = () => {
     fileInputRef.current.click(); // Trigger the click event on the hidden file input
@@ -54,7 +62,7 @@ const UploadPrice = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite me-4 app-btns-format "
             >
               {MenuConstants.upload} {MenuConstants.price}
             </Col>
@@ -63,7 +71,7 @@ const UploadPrice = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer  position-absolute end-0 me-3 bordercolororange mediumfontbold app-LandingPage-locations"
+              className="cursorpointer  position-absolute end-0 me-3 bordercolororange mediumfontbold app-btns-format "
               onClick={handleviewprice}
             >
               {MenuConstants.view} {MenuConstants.price}
@@ -73,25 +81,19 @@ const UploadPrice = () => {
                 <Row className="ms-4 mt-3">
                   {MenuConstants.price} {MenuConstants.list}
                 </Row>
-                <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="list"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                <Col className="ms3 mt-2">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
 
@@ -129,20 +131,19 @@ const UploadPrice = () => {
 
               <Row className="ms-2 mb-4 mt-3">
                 <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.upload}
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.cancel}
                   </Button>
                 </Col>
               </Row>
               <Row className="smallfontsemibold mt-4 p-0 ms-3 mb-4 fontcolororange">
                 <Col xxl={3} xl={3} lg={3} md={3} className="cursorpointer">
-                  {MenuConstants.download} category {MenuConstants.wise}{" "}
-                  Template
+                  {MenuConstants.download} {MenuConstants.price} Template
                 </Col>
                 <Col xxl={3} xl={3} lg={3} md={3} className="cursorpointer">
                   {MenuConstants.download} category {MenuConstants.wise}{" "}

@@ -15,9 +15,11 @@ import {
   Dropdown,
   FormControl,
   InputGroup,
+  Table,
 } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
+import { Autocomplete, TextField } from "@mui/material";
 
 const ISPincentive = () => {
   const navigate = useNavigate();
@@ -27,6 +29,32 @@ const ISPincentive = () => {
   const handlecreateisp = () => {
     navigate("/createisp"); // Navigate to the settings route
   };
+   const incentiveData = [
+     {
+       schemaName: "Incentive Plan A",
+       startDate: "2024-01-01",
+       endDate: "2024-12-31",
+       schemaOn: "Sales Ach- Qty",
+       payoutType: "% of Inv Value",
+       statusIcon: "./action2.png",
+       statusAlt: "Active",
+     },
+     {
+       schemaName: "Incentive Plan B",
+       startDate: "2024-06-01",
+       endDate: "2025-05-31",
+       schemaOn: "Sales Ach- Value",
+       payoutType: "Points per Qty",
+       statusIcon: "./action2.png",
+       statusAlt: "Pending",
+     },
+
+   ];
+   let data = [];
+   const defaultProps = {
+     options: data,
+     getOptionLabel: (option) => option.title,
+   };
   return (
     <Container fluid>
       <Row className="mb-4">
@@ -44,7 +72,7 @@ const ISPincentive = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format  me-4 app-btns-format"
             >
               {MenuConstants.view} {MenuConstants.ispIncentive}
             </Col>
@@ -53,7 +81,7 @@ const ISPincentive = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer  position-absolute end-0 p-1  me-3 bordercolororange mediumfontbold app-LandingPage-locations"
+              className="cursorpointer  position-absolute end-0 p-1  me-3 bordercolororange mediumfontbold app-btns-format app-btns-format"
               onClick={handlecreateisp}
             >
               {MenuConstants.create} {MenuConstants.ispIncentive}
@@ -62,71 +90,45 @@ const ISPincentive = () => {
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3">Schema Name</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="name"
-                      className="form-control app-placeholder"
-                    />
-                  </InputGroup>
+                  <TextField
+                    id="standard-basic"
+                    className="mt-1 app-input-width"
+                    variant="standard"
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3">Schema On</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="select"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
-                          sales Ach- Qty
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          sales Ach-value
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Activation- Qty
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.payout} Type</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="type"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
-                          % if Inv value
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Points per Qty
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Rupees per Qty
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Row className="mt-3">
@@ -159,12 +161,12 @@ const ISPincentive = () => {
               </Row>
               <Row className="ms-2 mb-4 mt-3">
                 <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format">
                     {MenuConstants.search}
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format">
                     {MenuConstants.showall}
                   </Button>
                 </Col>
@@ -177,96 +179,67 @@ const ISPincentive = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format app-btns-format"
             >
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 position-relative">
-              <Row className="backgroundcolor fontcolorwhite  ms-0 mt-2 mb-1">
-                <Col lg={2}>Schema Name</Col>
-                <Col>Start date</Col>
-                <Col>End date</Col>
-                <Col>Schema On</Col>
-                <Col> {MenuConstants.payout} Type</Col>
-                <Col>Status</Col>
-                <Col>View {MenuConstants.details}</Col>
-              </Row>
-              <Row className="ms-0 app-placeholder">
-                <Col lg={2}>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>
-                  {" "}
-                  <img
-                    src="./action2.png"
-                    className="cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "15px", height: "15px" }}
-                  />{" "}
-                </Col>
+              <Table className="mt-5">
+                <thead className="">
+                  <tr>
+                    <th className="backgroundcolor fontcolorwhite">
+                      Schema Name
+                    </th>
+                    <th className="backgroundcolor fontcolorwhite">
+                      Start Date
+                    </th>
 
-                <Col>
-                  <Button className="app-details-btn mb-1 mt-1 backgroundcolorsecondary bordercolororange">
-                    {MenuConstants.details}
-                  </Button>
-                </Col>
-              </Row>
-              <Row className="ms-0 mb-5 app-placeholder">
-                <Col lg={2}>xxx</Col>
-                <Col>xxxx</Col>
-                <Col>xxxx</Col>
-
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>
-                  {" "}
-                  <img
-                    src="./action2.png"
-                    className="cursorpointer"
-                    alt="Merchandizing"
-                    style={{ width: "15px", height: "15px" }}
-                  />{" "}
-                </Col>
-                <Col>
-                  <Button className="app-details-btn mb-1 mt-1 backgroundcolorsecondary bordercolororange">
-                    {MenuConstants.details}
-                  </Button>
-                </Col>
-              </Row>
-              <Row className="mt-5 d-flex align-items-center justify-content-center text-center mb-3">
+                    <th className="backgroundcolor fontcolorwhite">End Date</th>
+                    <th className="backgroundcolor fontcolorwhite">
+                      Schema On
+                    </th>
+                    <th className="backgroundcolor fontcolorwhite">
+                      {MenuConstants.payout} Type
+                    </th>
+                    <th className="backgroundcolor fontcolorwhite">Status</th>
+                    <th className="backgroundcolor fontcolorwhite">
+                      View {MenuConstants.details}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="app-placeholder">
+                  {incentiveData.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.schemaName}</td>
+                      <td>{item.startDate}</td>
+                      <td>{item.endDate}</td>
+                      <td>{item.schemaOn}</td>
+                      <td>{item.payoutType}</td>
+                      <td>
+                        <img
+                          src={item.statusIcon}
+                          alt={item.statusAlt}
+                          style={{ width: "15px", height: "15px" }}
+                        />
+                      </td>
+                      <td>
+                        <Button className="app-details-btn mb-1 mt-1 backgroundcolorsecondary bordercolororange">
+                          {MenuConstants.details}
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Row className="  app-pageformat mt5 mb3">
                 <Col xs="auto">
                   First {MenuConstants.page}
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </span>{" "}
                   {MenuConstants.page}
-                  <span
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    1
-                  </span>{" "}
-                  out of xx
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="app-pageformat-style">1</span> out of xx
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowRight} />
                   </span>{" "}
                   Last {MenuConstants.page}

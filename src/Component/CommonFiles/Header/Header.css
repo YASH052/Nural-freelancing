@@ -1,0 +1,17 @@
+.app-LandingPage-client-logo{
+    display: flex;
+    align-items: center;
+}
+.app-header-container
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.app-header-icons{
+    position: absolute;
+    margin-right: 12px;
+}
+.app-header-profile{
+    position: absolute;
+}

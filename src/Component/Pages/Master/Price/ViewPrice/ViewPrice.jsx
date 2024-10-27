@@ -13,9 +13,14 @@ import {
   Dropdown,
   FormControl,
   InputGroup,
+  Table,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
+ import TextField from "@mui/material/TextField";
+ import Autocomplete from "@mui/material/Autocomplete";
+ let data = [];
+
  
 const ViewPrice = () => {
   const navigate = useNavigate();
@@ -25,6 +30,38 @@ const ViewPrice = () => {
   const handleuploadprice = () => {
     navigate("/uploadprice"); // Navigate to the settings route
   };
+  const defaultProps = {
+    options: data,
+    getOptionLabel: (option) => option.title,
+  };
+
+  const priceData = [
+    {
+      listName: "Standard Price List",
+      sku: "SKU001",
+      whPrice: "100",
+      sdPrice: "110",
+      mdPrice: "120",
+      retailPrice: "130",
+      mop: "140",
+      mrp: "150",
+      effectiveDate: "2024-01-01",
+      validTill: "2024-12-31",
+    },
+    {
+      listName: "Premium Price List",
+      sku: "SKU002",
+      whPrice: "200",
+      sdPrice: "210",
+      mdPrice: "220",
+      retailPrice: "230",
+      mop: "240",
+      mrp: "250",
+      effectiveDate: "2024-06-01",
+      validTill: "2025-06-01",
+    },
+  
+  ];
   return (
     <Container fluid>
       <Row className="mb-4">
@@ -41,7 +78,7 @@ const ViewPrice = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.view} {MenuConstants.price}
             </Col>
@@ -50,7 +87,7 @@ const ViewPrice = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer  position-absolute end-0  me-3 bordercolororange mediumfontbold app-LandingPage-locations"
+              className="cursorpointer  position-absolute end-0  me-3 bordercolororange mediumfontbold app-btns-format "
               onClick={handleuploadprice}
             >
               {MenuConstants.upload} {MenuConstants.price}
@@ -58,48 +95,36 @@ const ViewPrice = () => {
             <Row className="app-country-box ms-0 ">
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3">{MenuConstants.price} List</Row>
-                <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="list"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                <Col className="ms3 mt-1 mb-4">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3">{MenuConstants.SKU}</Row>
-                <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="list"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">xxx</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">xxx</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                <Col className="ms3 mt-1">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Row>
@@ -132,26 +157,26 @@ const ViewPrice = () => {
               </Row>
               <Row className="ms-2 mb-4 mt-3">
                 <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.search}
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.showall}
                   </Button>
                 </Col>
               </Row>
-              <Row className="smallfontsemibold mt-4 p-0 ms-3 mb-4 fontcolororange">
+              {/* <Row className="smallfontsemibold mt-4 p-0 ms-3 mb-4 fontcolororange">
                 <Col xxl={3} xl={3} lg={3} md={3} className="cursorpointer">
-                  {MenuConstants.download} category {MenuConstants.wise}{" "}
-                  Template
+                  {MenuConstants.download} {MenuConstants.category}{" "}
+                  {MenuConstants.wise} Template
                 </Col>
                 <Col xxl={3} xl={3} lg={3} md={3} className="cursorpointer">
-                  {MenuConstants.download} category {MenuConstants.wise}{" "}
-                  Template
+                  {MenuConstants.download} {MenuConstants.category}{" "}
+                  {MenuConstants.wise} Template
                 </Col>
-              </Row>
+              </Row> */}
             </Row>
           </Row>
           <Row className="ms-4 mt-4 mb-5">
@@ -160,79 +185,66 @@ const ViewPrice = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 position-relative">
-              <Row className="backgroundcolor fontcolorwhite smallfontsemibold ms-0 mt-2 mb-1">
-                <Col lg={2}>{MenuConstants.price} List Name</Col>
-                <Col>{MenuConstants.SKU}</Col>
-                <Col>WH {MenuConstants.price}</Col>
-                <Col>SD {MenuConstants.price}</Col>
-                <Col>MD {MenuConstants.price}</Col>
-                <Col>Retail {MenuConstants.price}</Col>
-                <Col>MOP</Col>
-                <Col>MRP</Col>
-                <Col>Effective Date</Col>
-                <Col>Valid Till</Col>
-              </Row>
-              <Row className="ms-0 app-placeholder">
-                <Col lg={2}>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-              </Row>
-              <Row className="ms-0 mb-5 app-placeholder">
-                <Col lg={2}>xxx</Col>
-                <Col>xxxx</Col>
-                <Col>xxxx</Col>
-                <Col>xxxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxx</Col>
-                <Col>xxxx</Col>
-                <Col>xxx</Col>
-              </Row>
-              <Row className="mt-5 d-flex align-items-center justify-content-center text-center mb-3">
+              <Table className="mt-4">
+                <thead className=" smallfontsemibold">
+                  <tr>
+                    <th className="font colorwhite backgroundcolor">
+                      Price List Name
+                    </th>
+                    <th className="font colorwhite backgroundcolor">SKU</th>
+                    <th className="font colorwhite backgroundcolor">
+                      WH Price
+                    </th>
+                    <th className="font colorwhite backgroundcolor">
+                      SD Price
+                    </th>
+                    <th className="font colorwhite backgroundcolor">
+                      MD Price
+                    </th>
+                    <th className="font colorwhite backgroundcolor">
+                      Retail Price
+                    </th>
+                    <th className="font colorwhite backgroundcolor">MOP</th>
+                    <th className="font colorwhite backgroundcolor">MRP</th>
+                    <th className="font colorwhite backgroundcolor">
+                      Effective Date
+                    </th>
+                    <th className="font colorwhite backgroundcolor">
+                      Valid Till
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {priceData.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.listName}</td>
+                      <td>{item.sku}</td>
+                      <td>{item.whPrice}</td>
+                      <td>{item.sdPrice}</td>
+                      <td>{item.mdPrice}</td>
+                      <td>{item.retailPrice}</td>
+                      <td>{item.mop}</td>
+                      <td>{item.mrp}</td>
+                      <td>{item.effectiveDate}</td>
+                      <td>{item.validTill}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Row className="  app-pageformat mt5 mb3">
                 <Col xs="auto">
                   First {MenuConstants.page}
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </span>{" "}
                   {MenuConstants.page}
-                  <span
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    1
-                  </span>{" "}
-                  out of xx
-                  <span
-                    className="cursorpointer"
-                    style={{
-                      border: "1px solid black",
-                      padding: "10px",
-                      marginLeft: "10px",
-                    }}
-                  >
+                  <span className="app-pageformat-style">1</span> out of xx
+                  <span className="cursorpointer app-pageformat-style">
                     <FontAwesomeIcon icon={faArrowRight} />
                   </span>{" "}
                   Last {MenuConstants.page}

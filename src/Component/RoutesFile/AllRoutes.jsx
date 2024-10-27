@@ -30,11 +30,11 @@ import PriceList from '../Pages/Master/Price/PriceList/PriceList';
 
 const AllRoutes = () => {
     return (
-      <Row>
+      <Row className="">
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/setting" element={<Mastersetting />} />
-            <Route path="/country" element={<Country/>} />
+            <Route path="/country" element={<Country />} />
             <Route path="/region" element={<Region />} />
             <Route path="/state" element={<State />} />
             <Route path="/city" element={<City />} />

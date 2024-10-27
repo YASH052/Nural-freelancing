@@ -12,6 +12,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
+import { Autocomplete, TextField } from "@mui/material";
  
 
 const Createisp = () => {
@@ -49,6 +50,11 @@ const Createisp = () => {
   const handleviewisp = () => {
     navigate("/ispincentive"); // Navigate to the settings route
   };
+  let data = [];
+const defaultProps = {
+  options: data,
+  getOptionLabel: (option) => option.title,
+};
   return (
     <Container fluid>
       <Row></Row>
@@ -68,7 +74,7 @@ const Createisp = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange p-1 mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange p-1 mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.create} {MenuConstants.ispIncentive}
             </Col>
@@ -78,7 +84,7 @@ const Createisp = () => {
               lg={2}
               md={2}
               onClick={handleviewisp}
-              className="cursorpointer  position-absolute end-0 p-1 me-3  bordercolororange mediumfontbold app-LandingPage-locations"
+              className="cursorpointer  position-absolute end-0 p-1 me-3  bordercolororange mediumfontbold app-btns-format "
             >
               {MenuConstants.view} {MenuConstants.ispIncentive}
             </Col>
@@ -86,101 +92,63 @@ const Createisp = () => {
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.Scheme} Name</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="name"
-                      className="form-control app-placeholder"
-                    />
-                  </InputGroup>
+                  <TextField
+                    id="standard-basic"
+                    className="mt-1 app-input-width"
+                    variant="standard"
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.Scheme} On</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="select"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
-                          sales Ach- Qty
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          sales Ach-value
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Activation- Qty
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Col xxl={3} xl={3} lg={3} md={3}>
                 <Row className="ms-4 mt-3"> {MenuConstants.payout} Type</Row>
                 <Col className="ms-4 mb-3">
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="type"
-                      className="form-control app-placeholder"
-                    />
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-none"
-                        id="dropdown-basic"
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
-                          % if Inv value
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Points per Qty
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Rupees per Qty
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </InputGroup>
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                      />
+                    )}
+                  />
                 </Col>
               </Col>
               <Row className="mt-3">
                 <Col xxl={3} xl={3} lg={3} md={3}>
                   <Row className="ms-4 "> {MenuConstants.payout} On</Row>
                   <Col className="ms-4 mb-3">
-                    <InputGroup>
-                      <FormControl
-                        type="text"
-                        placeholder="type"
-                        className="form-control app-placeholder"
-                      />
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="outline-none"
-                          id="dropdown-basic"
-                        ></Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item href="#/action-1">
-                            Primary Sales
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
-                            Secondary Sales
-                          </Dropdown.Item>
-                          <Dropdown.Item href="#/action-3">
-                            Tertiary Sales
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </InputGroup>
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
                   </Col>
                 </Col>
                 <Col className="ms-4" xxl={3} xl={3} lg={3} md={3}>
@@ -212,12 +180,12 @@ const Createisp = () => {
               </Row>
               <Row className="ms-2 mb-4 mt-3">
                 <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.search}
                   </Button>
                 </Col>
                 <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations">
+                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
                     {MenuConstants.showall}
                   </Button>
                 </Col>
@@ -230,7 +198,7 @@ const Createisp = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               Select Users
             </Col>
@@ -274,7 +242,7 @@ const Createisp = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer mt-4 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer mt-4 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.upload} {MenuConstants.SKU}
             </Col>
@@ -315,7 +283,7 @@ const Createisp = () => {
               xl={2}
               lg={2}
               md={2}
-              className="cursorpointer mt-4 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-LandingPage-locations"
+              className="cursorpointer mt-4 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
               {MenuConstants.upload} {MenuConstants.payout}
             </Col>
