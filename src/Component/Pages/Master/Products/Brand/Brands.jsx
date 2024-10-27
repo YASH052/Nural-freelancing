@@ -45,6 +45,18 @@ const Brands = () => {
      e.preventDefault();
      // Add form submission logic here
    };
+
+    const [validated, setValidated] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+
+    const handleSubmitSearch = (event) => {
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      setValidated(true);
+    };
  const defaultProps = {
    options: data,
    getOptionLabel: (option) => option.title,
@@ -104,7 +116,7 @@ const Brands = () => {
                   </Form.Label>
                   <Row className="ms2 mb-3">
                     <FormControl>
-                      <Input id="my-input" aria-describedby="my-helper-text" />
+                      <Input id="my-input" aria-describedby="my-helper-text" className="app-input-width"/>
                     </FormControl>
                   </Row>
                 </Form.Group>
@@ -141,32 +153,47 @@ const Brands = () => {
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 position-relative">
-              <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
-              <Col xxl={3} xl={3} lg={3} md={3} sm={3} className="ms3 mt-1">
-                <Autocomplete
-                  {...defaultProps}
-                  id="disable-close-on-select"
-                  disableCloseOnSelect
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="standard"
-                      className="ms-2 app-input-width"
-                    />
-                  )}
-                />
-              </Col>
-              <Col
-                xxl={2}
-                xl={2}
-                lg={2}
-                md={2}
-                sm={2}
-                xs={2}
-                className="cursorpointer position-absolute end-0 mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format "
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmitSearch}
               >
-                {MenuConstants.search}
-              </Col>
+                <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
+                <Row>
+                  <Col xxl={3} xl={3} lg={3} md={3} sm={3} className="ms3 mt-1">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="ms-2 app-input-width"
+                          required
+                          onChange={(e) => setInputValue(e.target.value)}
+                        />
+                      )}
+                    />
+                  </Col>
+                  <Col
+                    xxl={2}
+                    xl={2}
+                    lg={2}
+                    md={2}
+                    sm={2}
+                    xs={2}
+                    className="cursorpointer position-absolute  end-0 me-3 mediumfont"
+                  >
+                    <Button
+                      type="submit"
+                      className=" backgroundcolorsecondary app-btns-format fontcolorwhite bordercolororange"
+                    >
+                      {MenuConstants.search}
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
 
               <Table className="mt-5">
                 <thead>

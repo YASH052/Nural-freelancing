@@ -12,11 +12,13 @@ import {
   FormControl,
   InputGroup,
   Table,
+  Form,
 } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
 import { Autocomplete, TextField } from "@mui/material";
+import { useState } from "react";
   const datas = [
     {
       targetName: "Target A",
@@ -40,7 +42,33 @@ const defaultProps = {
   options: data,
   getOptionLabel: (option) => option.title,
 };
+
+
+
 const ViewTarget = () => {
+
+  
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleValidation = () => {
+    const errors = {};
+
+    if (!fromDate) errors.fromDate = "From Date is required";
+    if (!toDate) errors.toDate = "To Date is required";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (handleValidation()) {
+      // Perform search action
+      console.log("Form is valid, perform search");
+    }
+  };
   const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting"); // Navigate to the settings route
@@ -78,83 +106,103 @@ const ViewTarget = () => {
             >
               {MenuConstants.create} {MenuConstants.target}
             </Col>
-            <Row className="app-country-box ms-0 ">
-              <Col xxl={3} xl={3} lg={3} md={3}>
-                <Row className="ms-4 mt-3">Entity Type</Row>
-                <Col className="ms-4 mb-3">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col xxl={3} xl={3} lg={3} md={3}>
-                <Row className="ms-4 mt-3"> {MenuConstants.target} Name</Row>
-                <Col className="ms-4 mb-3">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Row>
-                <Col xxl={3} xl={3} lg={3} md={3} className="ms-4">
-                  From Date
-                  <Col className="">
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      placeholder="Select date"
-                      className="date-input "
-                      //   required
+            <Form onSubmit={handleSearch}>
+              <Row className="app-country-box">
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms-4 mt-3">Entity Type</Row>
+                  <Col className="ms-4 mb-3">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-entity"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                          
+                          required
+                        />
+                      )}
                     />
                   </Col>
                 </Col>
-                <Col>
-                  To Date
-                  <Col className="input-container">
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      placeholder="Select date"
-                      className="date-input"
-                      //   required
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms-4 mt-3">{MenuConstants.target} Name</Row>
+                  <Col className="ms-4 mb-3">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-target"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                          
+                          required
+                        />
+                      )}
                     />
                   </Col>
                 </Col>
+                <Row>
+                  <Col xxl={3} xl={3} lg={3} md={3} className="ms-4">
+                    From Date
+                    <Col>
+                      <input
+                        type="date"
+                        value={fromDate}
+                        onChange={(e) => setFromDate(e.target.value)}
+                        className="date-input app-input-width"
+                        // required
+                      />
+                      {formErrors.fromDate && (
+                        <div className="error-text">{formErrors.fromDate}</div>
+                      )}
+                    </Col>
+                  </Col>
+                  <Col>
+                    To Date
+                    <Col>
+                      <input
+                        type="date"
+                        value={toDate}
+                        onChange={(e) => setToDate(e.target.value)}
+                        className="date-input"
+                        // required
+                      />
+                      {formErrors.toDate && (
+                        <div className="error-text">{formErrors.toDate}</div>
+                      )}
+                    </Col>
+                  </Col>
+                </Row>
+                <Row className="ms-2 mb-4 mt-3">
+                  <Col className="app-input-width">
+                    <Button
+                      type="submit"
+                      className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format"
+                    >
+                      {MenuConstants.search}
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        setFromDate("");
+                        setToDate("");
+                        setFormErrors({});
+                      }}
+                      className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite app-btns-format"
+                    >
+                      {MenuConstants.showall}
+                    </Button>
+                  </Col>
+                </Row>
               </Row>
-
-              <Row className="ms-2 mb-4 mt-3">
-                <Col className="app-input-width">
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
-                    {MenuConstants.search}
-                  </Button>
-                </Col>
-                <Col >
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite app-btns-format ">
-                    {MenuConstants.showall}
-                  </Button>
-                </Col>
-              </Row>
-            </Row>
+            </Form>
           </Row>
           <Row className="ms-4 mt-4 mb-5">
             <Col

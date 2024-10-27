@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
  import TextField from "@mui/material/TextField";
  import Autocomplete from "@mui/material/Autocomplete";
 import { FormControl, Input } from "@mui/material";
+import { useState } from "react";
  let data = [];
 const datas = [
   {
@@ -36,9 +37,28 @@ const datas = [
   },
 ];
 const Model = () => {
+
+ const [validated, setValidated] = useState(false);
+ const [brandValue, setBrandValue] = useState("");
+ const [categoryValue, setCategoryValue] = useState("");
+ const [subCategoryValue, setSubCategoryValue] = useState("");
+
   const defaultProps = {
     options: data,
     getOptionLabel: (option) => option.title,
+  };
+  const handleSubmitSearch = (event) => {
+    event.preventDefault();
+    if (brandValue && categoryValue && subCategoryValue) {
+      // Perform search or submit logic here
+      console.log("Submitted values:", {
+        brand: brandValue,
+        category: categoryValue,
+        subCategory: subCategoryValue,
+      });
+    } else {
+      setValidated(true);
+    }
   };
    const handleSubmit = (e) => {
      e.preventDefault();
@@ -95,7 +115,7 @@ const Model = () => {
 
                   <Col xxl={3} xl={3} lg={3} md={3}>
                     <Form.Group className="ms-2 mt-3">
-                      <Form.Label>{MenuConstants.category}</Form.Label>
+                      <Form.Label className="ms-3">{MenuConstants.category}</Form.Label>
                       <Col className="ms3 mt-1">
                         <Autocomplete
                           {...defaultProps}
@@ -115,8 +135,8 @@ const Model = () => {
 
                   <Col xxl={3} xl={3} lg={3} md={3}>
                     <Form.Group className="ms-2 mt-3">
-                      <Form.Label>{MenuConstants.subCategory}</Form.Label>
-                      <Col className="ms3 mt-1">
+                      <Form.Label className="ms-3">{MenuConstants.subCategory}</Form.Label>
+                      <Col className="ms-3 mt-1">
                         <Autocomplete
                           {...defaultProps}
                           id="disable-close-on-select-subCategory"
@@ -201,70 +221,110 @@ const Model = () => {
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 position-relative">
-              <Col xxl={3} xl={3} lg={3} md={3} className="ms-3">
-                <Row className="ms-3 mt-3">{MenuConstants.brand}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col xxl={3} xl={3} lg={3} md={3}>
-                <Row className="ms2 mt-3">{MenuConstants.category}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-
-              <Col xxl={3} xl={3} lg={3} md={3}>
-                <Row className="ms2 mt-3">{MenuConstants.subCategory}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-
-              <Col
-                xxl={2}
-                xl={2}
-                lg={2}
-                md={2}
-                sm={2}
-                xs={2}
-                className="cursorpointer position-absolute end-0 mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format"
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmitSearch}
               >
-                {MenuConstants.search}
-              </Col>
+                <Row>
+                  <Col xxl={3} xl={3} lg={3} md={3} className="ms-2">
+                    <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
+                    <Col className="ms-4 mt-2">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select-brand"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="mt-1 app-input-width"
+                            required
+                            error={validated && !brandValue}
+                            helperText={
+                              validated && !brandValue
+                                ? "Brand is required"
+                                : ""
+                            }
+                            onChange={(e) => setBrandValue(e.target.value)}
+                          />
+                        )}
+                      />
+                    </Col>
+                  </Col>
+
+                  <Col xxl={3} xl={3} lg={3} md={3}>
+                    <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
+                    <Col className="ms-3 mt-2">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select-category"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="mt-1 app-input-width"
+                            required
+                            error={validated && !categoryValue}
+                            helperText={
+                              validated && !categoryValue
+                                ? "Category is required"
+                                : ""
+                            }
+                            onChange={(e) => setCategoryValue(e.target.value)}
+                          />
+                        )}
+                      />
+                    </Col>
+                  </Col>
+
+                  <Col xxl={3} xl={3} lg={3} md={3}>
+                    <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
+                    <Col className="ms-3 mt-2">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select-subCategory"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="mt-1 app-input-width"
+                            required
+                            error={validated && !subCategoryValue}
+                            helperText={
+                              validated && !subCategoryValue
+                                ? "Subcategory is required"
+                                : ""
+                            }
+                            onChange={(e) =>
+                              setSubCategoryValue(e.target.value)
+                            }
+                          />
+                        )}
+                      />
+                    </Col>
+                  </Col>
+
+                  <Col
+                    xxl={2}
+                    xl={2}
+                    lg={2}
+                    md={2}
+                    sm={2}
+                    xs={2}
+                    className="cursorpointer position-absolute end-0 mt-5 ms-3 me-3 "
+                  >
+                    <Button
+                      type="submit"
+                      className=" bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format"
+                    >
+                      Search
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
               <Table className="mt-5">
                 <thead className="">
                   <tr className="">

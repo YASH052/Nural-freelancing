@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import {
   Card,
@@ -71,13 +72,14 @@ const Login = () => {
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="username" className="mt-3">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter username"
-                    name="username"
+                  <TextField
+                    fullWidth
+                    name="username" // Add name attribute
                     value={formData.username}
                     onChange={handleChange}
-                    isInvalid={!!errors.username}
+                    className="app-text-field"
+                    error={!!errors.username}
+                    helperText={errors.username}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.username}
@@ -85,17 +87,16 @@ const Login = () => {
                 </Form.Group>
                 <Form.Group controlId="password" className="mt-3">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Enter password"
-                    name="password"
+                  <TextField
+                    fullWidth
+                    name="password" // Add name attribute
+                    type="password" // Add password type for security
                     value={formData.password}
                     onChange={handleChange}
-                    isInvalid={!!errors.password}
+                    className="app-text-field"
+                    error={!!errors.password}
+                    helperText={errors.password}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.password}
-                  </Form.Control.Feedback>
                 </Form.Group>
                 <Row className="mt-3">
                   <Col>

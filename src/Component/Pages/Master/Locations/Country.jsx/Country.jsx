@@ -1,14 +1,46 @@
-import { Row, Table,Container, Col, Button } from "react-bootstrap";
+import { Row, Table,Container, Col, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
+import { TextFields } from "@mui/icons-material";
 
 export default function Country() {
+
+   const [errors, setErrors] = useState({});
+
+   const handleCreate = (e) => {
+     e.preventDefault();
+     if (validateForm()) {
+       console.log("Country:", countryInput);
+       // Handle form submission logic here
+     }
+   };
+
+   const handleCancel = () => {
+     setCountryInput(""); // Clears the input
+     setErrors({}); // Clears any validation errors
+   };
+    const handleSearch = () => {
+      setCountryInputsearch(""); // Clears the input
+      
+    };
+
+   const validateForm = () => {
+     const newErrors = {};
+     if (!countryInput.trim()) {
+       newErrors.country = "Country is required";
+     }
+     setErrors(newErrors);
+     return Object.keys(newErrors).length === 0;
+   };
+
+
   const navigate = useNavigate();
   const [countryInput, setCountryInput] = useState("");
+  const [countryInputsearch, setCountryInputsearch] = useState("");
   const data = [
     {
       serial: "1",
@@ -24,16 +56,6 @@ export default function Country() {
 
   const handleSetting = () => {
     navigate("/setting");
-  };
-
-  const handleCreate = () => {
-    if (countryInput) {
-      console.log("Country created:", countryInput);
-    }
-  };
-
-  const handleCancel = () => {
-    setCountryInput("");
   };
   return (
     <Container fluid>
@@ -51,23 +73,24 @@ export default function Country() {
               {MenuConstants.manage} {MenuConstants.country}
             </Col>
 
-            <Row className="app-country-box ms-0">
-              <Row className="mt-3 ms-1">{MenuConstants.country}</Row>
-              <Col className="ms-1 mb-3">
+            <Form onSubmit={handleCreate} className="app-country-box ms-0">
+              <Row className="mt-3 ms-4">{MenuConstants.country}</Row>
+              <Col className="ms-4 mb-3">
                 <TextField
                   id="country-input"
-                  // label="Country"
                   variant="standard"
                   value={countryInput}
                   onChange={(e) => setCountryInput(e.target.value)}
                   required
                   className="app-input-width"
+                  error={!!errors.country}
+                  helperText={errors.country}
                 />
               </Col>
               <Row className="mb-4">
-                <Col xxl={2} xl={2} lg={2} md={2}>
+                <Col xxl={2} xl={2} lg={2} md={2} className="ms-4">
                   <Button
-                    onClick={handleCreate}
+                    type="submit"
                     className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite app-btns-format me-4"
                   >
                     {MenuConstants.create}
@@ -75,6 +98,7 @@ export default function Country() {
                 </Col>
                 <Col>
                   <Button
+                    type="button"
                     onClick={handleCancel}
                     className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format"
                   >
@@ -82,7 +106,7 @@ export default function Country() {
                   </Button>
                 </Col>
               </Row>
-            </Row>
+            </Form>
           </Row>
 
           <Row className="ms2 mt-4 mb-5">
@@ -90,19 +114,31 @@ export default function Country() {
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0">
-              <Row className="mt-3 ms-3">{MenuConstants.country}</Row>
-              <Col xxl={3} xl={3} lg={3} md={3} className="mt-2">
-                <TextField
-                  id="search-country"
-                  // label="Search Country"
-                  variant="standard"
-                  className="app-input-width ms-3"
-                />
-              </Col>
-              <Col className="cursorpointer bordercolororange ms-5 mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format">
-                {MenuConstants.search}
-              </Col>
-
+              <Form onSubmit={handleSearch} className="">
+                <Row className="mt-3 ms-4">{MenuConstants.country}</Row>
+                <Row>
+                  <Col className="ms-4 mb-3">
+                    <TextField
+                      id="country-input"
+                      variant="standard"
+                      value={countryInputsearch}
+                      onChange={(e) => setCountryInputsearch(e.target.value)}
+                      required
+                      className="app-input-width"
+                      error={!!errors.country}
+                      helperText={errors.country}
+                    />
+                  </Col>
+                  <Col className="ms-5">
+                    <Button
+                      type="submit"
+                      className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format"
+                    >
+                      {MenuConstants.search}
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
               <Table className="mt-5">
                 <thead>
                   <tr className="first-row">

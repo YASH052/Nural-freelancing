@@ -3,6 +3,7 @@ import {
   Col,
   Button,
   Table,
+  Form,
    
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +15,8 @@ import {
  import TextField from "@mui/material/TextField";
  import Autocomplete from "@mui/material/Autocomplete";
  import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FormControl, Input } from "@mui/material";
 
 
  let data = [];
@@ -48,10 +51,34 @@ const skuData = [
 
 
 const SKU = () => {
-  const navigate = useNavigate();
+    const [validated, setValidated] = useState(false);
+    const [brandValue, setBrandValue] = useState("");
+    const [categoryValue, setCategoryValue] = useState("");
+    const [subCategoryValue, setSubCategoryValue] = useState("");
+    const [modelValue, setModelValue] = useState("");
+  
+    const navigate = useNavigate();
    const handleSetting = () => {
      navigate("/setting"); // Navigate to the settings route
    };
+    const handleSubmitSearch = (event) => {
+      event.preventDefault();
+      if (brandValue && categoryValue && subCategoryValue) {
+        // Perform search or submit logic here
+        console.log("Submitted values:", {
+          brand: brandValue,
+          category: categoryValue,
+          subCategory: subCategoryValue,
+          model: modelValue,
+        });
+      } else {
+        setValidated(true);
+      }
+    };
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Add form submission logic here
+    };
   const defaultProps = {
     options: data,
     getOptionLabel: (option) => option.title,
@@ -64,7 +91,7 @@ const SKU = () => {
         </span>{" "}
         {">"} {MenuConstants.SKU}
       </Col>
-      <Row className="ms-2 mt-2">
+      <Row className="ms-0 mt-2">
         <Col
           xxl={2}
           xl={2}
@@ -75,116 +102,147 @@ const SKU = () => {
           {MenuConstants.manage} {MenuConstants.SKU}
         </Col>
         <Row className="app-country-box ms-0">
-          <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-3 mt-3">{MenuConstants.brand}</Row>
-            <Col className="ms3 mt-1">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
-                  />
-                )}
-              />
-            </Col>
-          </Col>
-          <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
-            <Col className="ms3 mt-1">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
-                  />
-                )}
-              />
-            </Col>
-          </Col>
-          <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
-            <Col className="ms3 mt-1">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
-                  />
-                )}
-              />
-            </Col>
-          </Col>
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col xxl={3} xl={3} lg={3} md={3}>
+                <Form.Group className=" mt-3">
+                  <Form.Label className="">{MenuConstants.brand}</Form.Label>
+                  <Col className="ms-1 mt-1">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-brand"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
+                  </Col>
+                </Form.Group>
+              </Col>
 
-          <Col xxl={3} xl={3} lg={3} md={3}>
-            <Row className="ms-3 mt-3">{MenuConstants.model}</Row>
-            <Col className="ms3 mt-1">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
-                  />
-                )}
-              />
-            </Col>
-          </Col>
-          <Row>
-            <Col xxl={3} xl={3} lg={3} md={3}>
-              <Row className="ms-3 mt-3">
-                {MenuConstants.SKU} {MenuConstants.name}
-              </Row>
-              <Col className="ms-3 mb-3">
-                <TextField
-                  id="standard-basic"
-                  className="mt-1 app-input-width"
-                  variant="standard"
-                />
+              <Col xxl={3} xl={3} lg={3} md={3}>
+                <Form.Group className="ms-2 mt-3">
+                  <Form.Label>{MenuConstants.category}</Form.Label>
+                  <Col className=" mt-1">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-category"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
+                  </Col>
+                </Form.Group>
               </Col>
-            </Col>
-            <Col xxl={3} xl={3} lg={3} md={3}>
-              <Row className="ms-4 mt-3">
-                {MenuConstants.SKU} {MenuConstants.code}
-              </Row>
-              <Col className="ms-4 mb-3">
-                <TextField
-                  id="standard-basic"
-                  className="mt-1 app-input-width"
-                  variant="standard"
-                />
+
+              <Col xxl={3} xl={3} lg={3} md={3}>
+                <Form.Group className="ms-2 mt-3">
+                  <Form.Label>{MenuConstants.subCategory}</Form.Label>
+                  <Col className=" mt-1">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-subCategory"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
+                  </Col>
+                </Form.Group>
               </Col>
-            </Col>
-          </Row>
-          <Row className="ms-1 mt-4 mb-4">
-            <Col xxl={2} xl={2} lg={2} md={2}>
-              <Button className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
-                {MenuConstants.create}
-              </Button>
-            </Col>
-            <Col>
-              <Button className="bordercolororange cursorpointer mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
-                {MenuConstants.cancel}
-              </Button>
-            </Col>
-          </Row>
+
+              <Col>
+                <Form.Group className="ms-2 mt-3">
+                  <Form.Label>
+                    {MenuConstants.model} {MenuConstants.name}
+                  </Form.Label>
+                  <Col className=" mb-3">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select-subCategory"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="mt-1 app-input-width"
+                        />
+                      )}
+                    />
+                  </Col>
+                </Form.Group>
+              </Col>
+              <Row>
+                <Col lg={3} md={3} xl={3} xxl={3} sm={3}>
+                  <Form.Group className="ms-2 mt-3">
+                    <Form.Label className="">
+                      {MenuConstants.SKU} {MenuConstants.name}
+                    </Form.Label>
+                    <Col className=" mb-3">
+                      <FormControl>
+                        <Input
+                          id="my-input"
+                          className="mt-1 app-input-width"
+                          aria-describedby="my-helper-text"
+                        />
+                      </FormControl>
+                    </Col>
+                  </Form.Group>
+                </Col>
+                <Col lg={3} md={3} xl={3} xxl={3} sm={3}>
+                  <Form.Group className="ms-2 mt-3">
+                    <Form.Label className="ms-3">
+                      {MenuConstants.SKU} {MenuConstants.code}
+                    </Form.Label>
+                    <Col className=" mb-3">
+                      <FormControl>
+                        <Input
+                          id="my-input"
+                          className="mt-1  ms-1 app-input-width"
+                          aria-describedby="my-helper-text"
+                        />
+                      </FormControl>
+                    </Col>
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row className="ms-0 mb-4">
+                <Col xxl={2} xl={2} lg={2} md={2}>
+                  <Button
+                    type="submit"
+                    className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite mt-2 me-4 app-btns-format"
+                  >
+                    {MenuConstants.create}
+                  </Button>
+                </Col>
+                <Col>
+                  <Button
+                    type="button"
+                    className="bordercolororange cursorpointer mediumfont backgroundcolorsecondary fontcolorwhite mt-2 me-4 app-btns-format"
+                  >
+                    {MenuConstants.cancel}
+                  </Button>
+                </Col>
+              </Row>
+            </Row>
+          </Form>
         </Row>
       </Row>
-      <Row className="ms-0 mt-4">
+      <Row className="ms-0 mt-4 mb-5">
         <Col
           xxl={2}
           xl={2}
@@ -195,81 +253,117 @@ const SKU = () => {
           {MenuConstants.list}
         </Col>
         <Row className="app-country-box ms-0 p-0 position-relative">
-          <Col>
-            <Row className="ms-4 mt-3">{MenuConstants.brand}</Row>
-            <Col className="ms3 mt-2">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
+          <Form noValidate validated={validated} onSubmit={handleSubmitSearch}>
+            <Row>
+              <Col>
+                <Row className="ms-3 mt-3">{MenuConstants.brand}</Row>
+                <Col className="ms-3 mt-2">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select-brand"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                        required
+                        error={validated && !brandValue}
+                        helperText={
+                          validated && !brandValue ? "Brand is required" : ""
+                        }
+                        onChange={(e) => setBrandValue(e.target.value)}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Col>
-          </Col>
+                </Col>
+              </Col>
 
-          <Col>
-            <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
-            <Col className="ms3 mt-2">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
+              <Col>
+                <Row className="ms-3 mt-3">{MenuConstants.category}</Row>
+                <Col className="ms-3 mt-2">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select-category"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                        required
+                        error={validated && !categoryValue}
+                        helperText={
+                          validated && !categoryValue
+                            ? "Category is required"
+                            : ""
+                        }
+                        onChange={(e) => categoryValue(e.target.value)}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Col>
-          </Col>
-          <Col>
-            <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
-            <Col className="ms3 mt-2">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
+                </Col>
+              </Col>
+
+              <Col>
+                <Row className="ms-3 mt-3">{MenuConstants.subCategory}</Row>
+                <Col className="ms-3 mt-2">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select-subCategory"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                        required
+                        error={validated && !subCategoryValue}
+                        helperText={
+                          validated && !subCategoryValue
+                            ? "Subcategory is required"
+                            : ""
+                        }
+                        onChange={(e) => setSubCategoryValue(e.target.value)}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Col>
-          </Col>
-
-          <Col>
-            <Row className="ms-3 mt-3">{MenuConstants.model}</Row>
-            <Col className="ms3 mt-2">
-              <Autocomplete
-                {...defaultProps}
-                id="disable-close-on-select"
-                disableCloseOnSelect
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant="standard"
-                    className="mt-1 app-input-width"
+                </Col>
+              </Col>
+              <Col>
+                <Row className="ms-3 mt-3">{MenuConstants.model}</Row>
+                <Col className=" mt-2">
+                  <Autocomplete
+                    {...defaultProps}
+                    id="disable-close-on-select-subCategory"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        className="mt-1 app-input-width"
+                        required
+                        error={validated && !modelValue}
+                        helperText={
+                          validated && !modelValue ? "Model is required" : ""
+                        }
+                        onChange={(e) => setModelValue(e.target.value)}
+                      />
+                    )}
                   />
-                )}
-              />
-            </Col>
-          </Col>
+                </Col>
+              </Col>
 
-          <Col className="cursorpointer  mt-5 me-3 bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format ">
-            {MenuConstants.search}
-          </Col>
-
+              <Col className="cursorpointer  mt-5 ms-3 me-3 ">
+                <Button
+                  type="submit"
+                  className=" bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format"
+                >
+                  Search
+                </Button>
+              </Col>
+            </Row>
+          </Form>
           <Table className="mt-5">
             <thead className="backgroundcolor fontcolorwhite">
               <tr>
@@ -319,7 +413,7 @@ const SKU = () => {
             </tbody>
           </Table>
 
-          <Row className="  app-pageformat mt5 mb3">
+          <Row className="  app-pageformat mt-5 mb-5">
             <Col xs="auto">
               First {MenuConstants.page}
               <span

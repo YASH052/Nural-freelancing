@@ -7,6 +7,7 @@ import {
   Table,
   FormControl,
   InputGroup,
+  Form,
 } from "react-bootstrap";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
  
@@ -18,6 +19,7 @@ import {
  import TextField from "@mui/material/TextField";
  import Autocomplete from "@mui/material/Autocomplete";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 let data = [];
 const datas = [
   {
@@ -68,8 +70,42 @@ const datas = [
 ];
 const Area = () => {
   const navigate = useNavigate();
- 
+  const [countryInputsearch, setCountryInputsearch] = useState("");
+  const [regionInputsearch, setRegionInputsearch] = useState("");
+  const [stateInputsearch, setStateInputsearch] = useState("");
+  const [cityInputsearch, setCityInputsearch] = useState("");
+  const [areaInputsearch, setAreaInputsearch] = useState("");
+  const [picodeInputsearch, setPincodeInputsearch] = useState("");
+   const [country, setCountry] = useState("");
+   const [region, setRegion] = useState("");
+   const [state, setState] = useState("");
+   const [city, setCity] = useState("");
+   const [area, setArea] = useState("");
+   const [pincode, setPincode] = useState("")
 
+const handleSearch = () => {
+  setCountryInputsearch("");
+  setRegionInputsearch("");
+  setStateInputsearch("");
+  setAreaInputsearch("")
+  setCityInputsearch("");
+  setPincode("")
+};
+
+   const handleCancel = () => {
+     // Clear the form values or perform any cancel logic
+     setCountry("");
+     setRegion("");
+     setState("");
+     setCity("");
+     setArea("")
+     setPincode("")
+   };
+   const handleCreate = (e) => {
+     e.preventDefault();
+     // Submit logic here, like form validation or API calls
+     console.log("Creating with:", { country, region, state, city, area });
+   };
  const defaultProps = {
    options: data,
    getOptionLabel: (option) => option.title,
@@ -102,110 +138,120 @@ const Area = () => {
             >
               {MenuConstants.manage} {MenuConstants.area}
             </Col>
-            <Row className="app-country-box ms-0">
-              <Col>
-                <Row className="ms-2 mt-3">{MenuConstants.country}</Row>
-                <Col className=" mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="ms-2 app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms2 mt-3">{MenuConstants.region}</Row>
-                <Col className=" mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width ms-2"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms2 mt-3">{MenuConstants.state}</Row>
-                <Col className=" mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width ms-2"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms2 mt-3">{MenuConstants.city}</Row>
-                <Col className=" mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width ms-2"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Row className=" mb-4">
-                <Col lg={3} xl={3} md={3} xxl={3} sm={3}>
-                  <Row className="ms2 mt-3">{MenuConstants.area}</Row>
-                  <Col className="mb-3">
-                    <TextField
-                      id="standard-basic"
-                      className="mt-1 app-input-width ms-2"
-                      variant="standard"
+            <Form onSubmit={handleCreate} onReset={handleCancel}>
+              <Row className="app-country-box ">
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms-4 mt-3">{MenuConstants.country}</Row>
+                  <Col className="ms3">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="ms-2 app-input-width"
+                          required
+                          onChange={(e) => setCountry(e.target.value)}
+                        />
+                      )}
                     />
                   </Col>
                 </Col>
-                <Col>
-                  <Row className="ms-3 mt-3">{MenuConstants.pincode}</Row>
-                  <Col className="mb-3">
-                    <TextField
-                      id="standard-basic"
-                      className="app-input-width mt-1 ms-3"
-                      variant="standard"
+
+                {/* Region Input */}
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms2 mt-3">{MenuConstants.region}</Row>
+                  <Col className="ms2 mb-3">
+                    <Autocomplete
+                      {...defaultProps}
+                      id="disable-close-on-select"
+                      disableCloseOnSelect
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="standard"
+                          className="ms-2 app-input-width"
+                          required
+                          onChange={(e) => setRegion(e.target.value)}
+                        />
+                      )}
                     />
                   </Col>
                 </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col xxl={2} xl={2} lg={2} md={2}>
-                  <Button className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
-                    {MenuConstants.create}
-                  </Button>
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms2 mt-3">{MenuConstants.state}</Row>
+                  <Col className="ms2 mb-3">
+                    <TextField
+                      id="region-input"
+                      variant="standard"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      className="mt-1 app-input-width"
+                    />
+                  </Col>
                 </Col>
-                <Col>
-                  <Button className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format ">
-                    {MenuConstants.cancel}
-                  </Button>
+                <Col xxl={3} xl={3} lg={3} md={3}>
+                  <Row className="ms2 mt-3">{MenuConstants.state}</Row>
+                  <Col className="ms2 mb-3">
+                    <TextField
+                      id="region-input"
+                      variant="standard"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      className="mt-1 app-input-width"
+                    />
+                  </Col>
                 </Col>
+                <Row>
+                  <Col xxl={3} xl={3} lg={3} md={3}>
+                    <Row className="ms-4 mt-3">{MenuConstants.area}</Row>
+                    <Col className="ms-4 mb-3">
+                      <TextField
+                        id="region-input"
+                        variant="standard"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        className="mt-1 app-input-width"
+                      />
+                    </Col>
+                  </Col>
+                  <Col xxl={3} xl={3} lg={3} md={3}>
+                    <Row className="ms2 mt-3">{MenuConstants.pincode}</Row>
+                    <Col className="ms2 mb-3">
+                      <TextField
+                        id="region-input"
+                        variant="standard"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        className="mt-1 app-input-width"
+                      />
+                    </Col>
+                  </Col>
+                </Row>
+
+                {/* Buttons */}
+                <Row className="ms-1 mb-4">
+                  <Col xxl={2} xl={2} lg={2} md={2}>
+                    <Button
+                      type="submit"
+                      className="cursorpointer bordercolororange mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format"
+                    >
+                      {MenuConstants.create}
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button
+                      type="reset"
+                      className="bordercolororange cursorpointer mediumfont mt-2 backgroundcolorsecondary fontcolorwhite me-4 app-btns-format"
+                    >
+                      {MenuConstants.cancel}
+                    </Button>
+                  </Col>
+                </Row>
               </Row>
-            </Row>
+            </Form>
           </Row>
           <Row className="ms2 mt-4 ">
             <Col
@@ -218,107 +264,125 @@ const Area = () => {
               {MenuConstants.list}
             </Col>
             <Row className="app-country-box ms-0 p-0 mb-5 position-relative">
-              <Col>
-                <Row className="ms-3 mt-3">{MenuConstants.country}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width"
+              <Form onSubmit={handleSearch} className="ms-0">
+                <Row className="mt-4">
+                  <Col>
+                    <Row className="mt-3 ms-3">{MenuConstants.country}</Row>
+
+                    <Col className="ms-2 mb-3">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="ms-2 app-input-width"
+                            required
+                            onChange={(e) =>
+                              setCountryInputsearch(e.target.value)
+                            }
+                          />
+                        )}
                       />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms-3 mt-3">{MenuConstants.region}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms-3 mt-3">{MenuConstants.state}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Col>
-                <Row className="ms-3 mt-3">{MenuConstants.city}</Row>
-                <Col className="ms3 mt-1">
-                  <Autocomplete
-                    {...defaultProps}
-                    id="disable-close-on-select"
-                    disableCloseOnSelect
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        className="app-input-width"
-                      />
-                    )}
-                  />
-                </Col>
-              </Col>
-              <Row>
-                <Col lg={3}>
-                  <Row className="ms-4 mt-4">{MenuConstants.area}</Row>
-                  <Col className="ms3 mb-3">
-                    <TextField
-                      id="standard-basic"
-                      className="app-input-width mt-1"
-                      variant="standard"
-                    />
+                    </Col>
                   </Col>
-                </Col>
-                <Col lg={3}>
-                  <Row className="ms-4 mt-4">{MenuConstants.pincode}</Row>
-                  <Col className="ms3 mb-3">
-                    <TextField
-                      id="standard-basic"
-                      className="mt-1 app-input-width"
-                      variant="standard"
-                    />
+                  <Col>
+                    <Row className="mt-3 ms-1">{MenuConstants.region}</Row>
+                    <Col className="ms-1 mb-3">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="ms-2 app-input-width"
+                            required
+                            onChange={(e) =>
+                              setRegionInputsearch(e.target.value)
+                            }
+                          />
+                        )}
+                      />
+                    </Col>
                   </Col>
-                </Col>
-                <Col
-                  xxl={2}
-                  xl={2}
-                  lg={2}
-                  md={2}
-                  sm={3}
-                  xs={3}
-                  className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite ms-5 mt-5 app-btns-format "
-                >
-                  {MenuConstants.search}
-                </Col>
-              </Row>
+                  <Col>
+                    <Row className="mt-3 ms-1">{MenuConstants.state}</Row>
+                    <Col className="ms-1 mb-3">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="ms-2 app-input-width"
+                            required
+                            onChange={(e) =>
+                              setStateInputsearch(e.target.value)
+                            }
+                          />
+                        )}
+                      />
+                    </Col>
+                  </Col>
+                  <Col>
+                    <Row className="mt-3 ms-1">{MenuConstants.city}</Row>
+                    <Col className="ms-1 mb-3">
+                      <Autocomplete
+                        {...defaultProps}
+                        id="disable-close-on-select"
+                        disableCloseOnSelect
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            className="ms-2 app-input-width"
+                            required
+                            onChange={(e) => setCityInputsearch(e.target.value)}
+                          />
+                        )}
+                      />
+                    </Col>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xxl={3} xl={3} lg={3} md={3}>
+                    <Row className="mt-3 ms-3">{MenuConstants.area}</Row>
+                    <Col className="ms-2 mb-3">
+                      <TextField
+                        variant="standard"
+                        className="ms-2 app-input-width"
+                        required
+                        onChange={(e) => setAreaInputsearch(e.target.value)}
+                      />
+                    </Col>
+                  </Col>
+                  <Col xxl={3} xl={3} lg={3} md={3}>  
+                    <Row className="mt-3 ms-2">{MenuConstants.pincode}</Row>
+                    <Col className="ms-1 mb-3">
+                      <TextField
+                        variant="standard"
+                        className="ms-2 app-input-width"
+                        required
+                        onChange={(e) => setPincodeInputsearch(e.target.value)}
+                      />
+                    </Col>
+                  </Col>
+                  <Col className="ms-5">
+                    <Button
+                      type="submit"
+                      className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary mt-4 fontcolorwhite app-btns-format"
+                    >
+                      {MenuConstants.search}
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
               <Table className="mt-5">
                 <thead>
                   <tr className="first-row">

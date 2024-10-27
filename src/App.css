@@ -55,6 +55,11 @@ border-bottom: 2px solid rgb(148, 143, 143);
 .sidemenuwidth { 
     max-width: 35px;
 }
+
+.app-border-radius-none{
+  border-radius: 0%;
+}
+
 .sidemenuborder {
     border-right: 2px solid #DCDCDC;
 }
@@ -85,6 +90,16 @@ border-bottom: 2px solid rgb(148, 143, 143);
     border: none;
     border: #ED713E;
   }
+ 
+  .app-text-field {
+  .MuiOutlinedInput-root {
+    border-radius: 8px;
+    height: 50%;
+  }
+  .MuiInputBase-input {
+    padding: 12px;
+  }
+}
   .app-uploadfile-btn {
     background-color: rgb(221, 225, 226)!important;
     color: #333!important;

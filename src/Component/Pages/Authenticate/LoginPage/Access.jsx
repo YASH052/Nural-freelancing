@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   Form,
   Button,
   Alert,
+  FormControl,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -59,16 +61,14 @@ const Access = () => {
               <Form>
                 <Form.Group controlId="accessKey" className="mt-4">
                   <Form.Label>Access Key</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Access Key"
+                  <TextField
+                    fullWidth
                     value={accessKey}
                     onChange={handleChange}
-                    isInvalid={!!error}
+                    className="app-text-field"
+                    error={!!error}
+                    helperText={error}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {error}
-                  </Form.Control.Feedback>
                 </Form.Group>
                 <Button
                   variant="primary"

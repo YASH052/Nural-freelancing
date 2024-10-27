@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import {
   Card,
   Col,
-  Form,
   Container,
   Row,
   Button,
   Alert,
 } from "react-bootstrap";
+import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
@@ -53,26 +53,41 @@ const ForgetPassword = () => {
                   {error}
                 </Alert>
               )}
-              <Form>
-                <Form.Group controlId="username" className="mt-4">
-                  <Form.Label>Enter Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </Form.Group>
-                <Row className="mt-3 align-items-center justify-content-center">OR</Row>
-                <Form.Group controlId="email" className="mt-2">
-                  <Form.Label>Enter Email ID</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Form.Group>
+              <form className="mt-4">
+                <Row>
+                  <Row className="ms-0">Enter UserName</Row>
+                  <Col className="mt-1">
+                    <TextField
+                      fullWidth
+                      // label="Enter Username"
+                      // variant="standard"
+                      className="app-text-field"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      error={!!error && !email}
+                      helperText={error && !email ? error : ""}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-3 align-items-center justify-content-center">
+                  OR
+                </Row>
+                <Row>
+                  <Row className="ms-0">Enter Email</Row>
+                  <Col className="mt-1">
+                    <TextField
+                      fullWidth
+                      // label="Enter Email ID"
+                      // variant="standard"
+                      type="email"
+                      className="app-text-field"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      error={!!error && !username}
+                      helperText={error && !username ? error : ""}
+                    />
+                  </Col>
+                </Row>
                 <Row>
                   <Col
                     className="mt-1 fontcolororange mediumfont text-end cursorpointer"
@@ -88,7 +103,7 @@ const ForgetPassword = () => {
                 >
                   Submit
                 </Button>
-              </Form>
+              </form>
             </Card>
           </Col>
           <Col lg={5} md={5} xl={5}>
