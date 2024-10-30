@@ -23,6 +23,16 @@ import Createisp from '../Pages/SideMenuPages/ISPincentive/CreateISP/Createisp';
 import ViewTarget from '../Pages/SideMenuPages/Target/ViewTarget/ViewTarget';
 import CreateTarget from '../Pages/SideMenuPages/Target/CreateTarget/CreateTarget';
 import PriceList from '../Pages/Master/Price/PriceList/PriceList';
+import AddRetailerExcel from '../Pages/Master/Retailers/AddRetailerexc/AddRetailerExcel';
+import AddRetailerUi from '../Pages/Master/Retailers/AddRetailerUi/AddRetailerUi';
+import ViewRetailer from '../Pages/Master/Retailers/ViewRtailer/ViewRetailer';
+import AddSalesExcel from '../Pages/Master/Sales Channel/AddsalesExcel/AddSalesExcel';
+import AddSalesUi from '../Pages/Master/Sales Channel/AddSalesUi/AddSalesUi';
+import ViewSales from '../Pages/Master/Sales Channel/ViewSales/ViewSales';
+import ManageIspExcel from '../Pages/Master/ISP Master/ManageISP/ManagIspExcel';
+import ManageIspUi from '../Pages/Master/ISP Master/ManageIspUI/ManageIspUi';
+import BulkuploadMapping from '../Pages/Master/User Master/Bulk Upload Mapping/BulkuploadMapping';
+import ManageUser from '../Pages/Master/User Master/Manage User/ManageUser';
 
 // Will Implement this later how we can use Lazy loading for pages
 // const Dashboard = lazy(() => import('../Pages/Dashboard/Dashboard'));
@@ -51,6 +61,16 @@ const AllRoutes = () => {
             <Route path="/createisp" element={<Createisp />} />
             <Route path="/ispincentive" element={<ISPincentive />} />
             <Route path="/sku" element={<SKU />} />
+            <Route path="/addretailerexcel" element={<AddRetailerExcel />} />
+            <Route path="/addretailerui" element={<AddRetailerUi />} />
+            <Route path="/viewretailer" element={<ViewRetailer />} />
+            <Route path="/addsalesexcel" element={<AddSalesExcel />} />
+            <Route path="/addsalesui" element={<AddSalesUi />} />
+            <Route path="/viewsales" element={<ViewSales />} />
+            <Route path="/manageispexcel" element={<ManageIspExcel />} />
+            <Route path="/manageispui" element={<ManageIspUi />} />
+            <Route path="/manageuser" element={<ManageUser />} />
+            <Route path="/bulkuploadmapping" element={<BulkuploadMapping />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
         </Suspense>

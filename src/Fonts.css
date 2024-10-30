@@ -16,7 +16,8 @@
     font-weight: 500;
 }
 .largefont{
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 2.5rem;
 }
 .largefontbold{
     font-size: 18px;
