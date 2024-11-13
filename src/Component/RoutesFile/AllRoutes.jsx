@@ -33,7 +33,6 @@ import ManageIspExcel from '../Pages/Master/ISP Master/ManageISP/ManagIspExcel';
 import ManageIspUi from '../Pages/Master/ISP Master/ManageIspUI/ManageIspUi';
 import BulkuploadMapping from '../Pages/Master/User Master/Bulk Upload Mapping/BulkuploadMapping';
 import ManageUser from '../Pages/Master/User Master/Manage User/ManageUser';
-<<<<<<< HEAD
 import LeaveTypes from '../Pages/Master/Attendance Master/Leave Types/LeaveTypes';
 // import LeaveAllocation from '../Pages/Master/Leave Master/Leave allocation/LeaveAllocation';
 import ManageBulletinCategory from '../Pages/SideMenuPages/Bulletin/ManageBulletinCategory/ManageBulletinCategory';
@@ -50,8 +49,6 @@ import ViewSurvey from '../Pages/SideMenuPages/Survey/View Survey/ViewSurvey';
 import AttendanceRegularization from '../Pages/Master/Attendance Master/Attendance Regularization/AttendanceRegularization';
 import BalanceLeaveExcel from '../Pages/Master/Attendance Master/Balance Leave excel/BalanceLeaveExcel';
 import BalanceLeaveUi from '../Pages/Master/Attendance Master/Balance Leave UI/BalanceLeaveUi';
-=======
->>>>>>> 40659183f3ab1a75310227313b80d1938144048b
 
 // Will Implement this later how we can use Lazy loading for pages
 // const Dashboard = lazy(() => import('../Pages/Dashboard/Dashboard'));
@@ -90,7 +87,6 @@ const AllRoutes = () => {
             <Route path="/manageispui" element={<ManageIspUi />} />
             <Route path="/manageuser" element={<ManageUser />} />
             <Route path="/bulkuploadmapping" element={<BulkuploadMapping />} />
-<<<<<<< HEAD
             <Route path="/leavetypes" element={<LeaveTypes />} />
             {/* <Route path="/leaveallocation" element={<LeaveAllocation />} /> */}
             <Route
@@ -117,8 +113,6 @@ const AllRoutes = () => {
             <Route path="/balanceleaveexcel" element={<BalanceLeaveExcel />} />
             <Route path="/balanceleaveui" element={<BalanceLeaveUi />} />
 
-=======
->>>>>>> 40659183f3ab1a75310227313b80d1938144048b
             <Route path="*" element={<Notfound />} />
           </Routes>
         </Suspense>
