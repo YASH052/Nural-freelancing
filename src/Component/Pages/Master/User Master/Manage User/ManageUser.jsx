@@ -65,7 +65,11 @@ const ManageUser = () => {
             <span className="cursorpointer" onClick={handleSetting}>
               {MenuConstants.master}
             </span>{" "}
+<<<<<<< HEAD
             {">"} {MenuConstants.user} Master {">"} Manage {MenuConstants.user}
+=======
+            {">"} User Master {">"} Manage User
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
           </Col>
           {/* </Col> */}
           <Row className="ms2 mt-2 position-relative">
@@ -76,14 +80,22 @@ const ManageUser = () => {
               md={2}
               className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
+<<<<<<< HEAD
               Manage {MenuConstants.user}
+=======
+              Manage User
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
             </Col>
 
             <Row className="app-country-box ms-0">
               <Form onSubmit={handleSubmit}>
                 <Row className="ms-4 mt-4 ">
                   <FormControl className=" app-input-width me-5">
+<<<<<<< HEAD
                     <Col>{MenuConstants.user} Role</Col>
+=======
+                    <Col>User Role</Col>
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                     <TextField variant="standard" className="app-input-width" />
                   </FormControl>
                   <FormControl className=" app-input-width me-5">
@@ -225,7 +237,11 @@ const ManageUser = () => {
               md={2}
               className="mt-5 cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite  me-4 app-btns-format "
             >
+<<<<<<< HEAD
               {MenuConstants.user} List
+=======
+              User List
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
             </Col>
             <Modal
               show={showModal}
@@ -324,7 +340,11 @@ const ManageUser = () => {
               <Row className="app-country-box">
                 <Row className="ms-4 mt-3">
                   <FormControl className="app-input-width me-5">
+<<<<<<< HEAD
                     <Col className=""> {MenuConstants.user} Role</Col>
+=======
+                    <Col className=""> User Role</Col>
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                     <Autocomplete
                       {...defaultProps}
                       id="disable-close-on-select"
@@ -382,7 +402,11 @@ const ManageUser = () => {
                   <thead className=" smallfontsemibold">
                     <tr>
                       <th className="fontcolorwhite backgroundcolor">
+<<<<<<< HEAD
                         {MenuConstants.user} Role
+=======
+                        User Role
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                       </th>
 
                       <th className="fontcolorwhite backgroundcolor">
@@ -521,7 +545,11 @@ const ManageUser = () => {
                     <TextField variant="standard" className="app-input-width" />
                   </FormControl>
                   <FormControl className="app-input-width me-5">
+<<<<<<< HEAD
                     <Col>{MenuConstants.user} Name</Col>
+=======
+                    <Col>User Name</Col>
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                     <TextField variant="standard" className="app-input-width" />
                   </FormControl>
                 </Row>
@@ -561,14 +589,22 @@ const ManageUser = () => {
                         Location Code
                       </th>
                       <th className="fontcolorwhite backgroundcolor">
+<<<<<<< HEAD
                         {MenuConstants.user} Name
+=======
+                        User Name
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                       </th>
 
                       <th className="fontcolorwhite backgroundcolor">
                         Parent Location
                       </th>
                       <th className="fontcolorwhite backgroundcolor">
+<<<<<<< HEAD
                         Parent {MenuConstants.user} Name
+=======
+                        Parent User Name
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
                       </th>
                       <th className="fontcolorwhite backgroundcolor">Status</th>
                       <th className="fontcolorwhite backgroundcolor">Edit</th>

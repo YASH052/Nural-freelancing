@@ -229,6 +229,7 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer app-mastersetting-btns  me-4 app-btns-format "
           onClick={handleRetailerClick}
+          
         >
           {MenuConstants.manage} {MenuConstants.retailer}
         </Col>
@@ -245,6 +246,7 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer mt-2 app-mastersetting-btns me-4 app-btns-format "
           onClick={handleSalesClick}
+          
         >
           {MenuConstants.manageSalesChannel}
         </Col>
@@ -279,6 +281,7 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleManageUser}
+          
         >
           {MenuConstants.userMaster}
         </Col>
@@ -289,6 +292,7 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleBulkUploadMapping}
+          
         >
           {MenuConstants.bulkUploadMapping}
         </Col>
@@ -373,6 +377,7 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleManageIspExcel}
+          
         >
           {MenuConstants.manageISP}
         </Col>

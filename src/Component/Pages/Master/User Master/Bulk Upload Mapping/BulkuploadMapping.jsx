@@ -59,7 +59,11 @@ const BulkUploadMapping = () => {
             <span className="cursorpointer" onClick={handleSetting}>
               {MenuConstants.master}
             </span>{" "}
+<<<<<<< HEAD
             {">"} {MenuConstants.user} Master {">"} Bulk Upload Mapping
+=======
+            {">"} User Master {">"} Bulk Upload Mapping
+>>>>>>> 40659183f3ab1a75310227313b80d1938144048b
           </Col>
           {/* </Col> */}
           <Row className="ms2 mt-2 position-relative">

@@ -68,7 +68,7 @@ const ManageIspUi = () => {
     const handleOpenModal = () => setShowModal(true);
 
     // Handler for closing the modal
-  const handleCloseModal = () => setShowModal(false);
+    const handleCloseModal = () => setShowModal(false);
   let data = [];
   const defaultProps = {
     options: data,
