@@ -109,7 +109,7 @@ const Brands = () => {
                 <Form.Group
                   // as={Row}
                   className="ms-2 mt-3"
-                  controlId="formDescription"
+                  controlId="form{MenuConstants.description} "
                 >
                   <Form.Label column className="ms2">
                     {MenuConstants.description}

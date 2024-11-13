@@ -23,6 +23,32 @@ import Createisp from '../Pages/SideMenuPages/ISPincentive/CreateISP/Createisp';
 import ViewTarget from '../Pages/SideMenuPages/Target/ViewTarget/ViewTarget';
 import CreateTarget from '../Pages/SideMenuPages/Target/CreateTarget/CreateTarget';
 import PriceList from '../Pages/Master/Price/PriceList/PriceList';
+import AddRetailerExcel from '../Pages/Master/Retailers/AddRetailerexc/AddRetailerExcel';
+import AddRetailerUi from '../Pages/Master/Retailers/AddRetailerUi/AddRetailerUi';
+import ViewRetailer from '../Pages/Master/Retailers/ViewRtailer/ViewRetailer';
+import AddSalesExcel from '../Pages/Master/Sales Channel/AddsalesExcel/AddSalesExcel';
+import AddSalesUi from '../Pages/Master/Sales Channel/AddSalesUi/AddSalesUi';
+import ViewSales from '../Pages/Master/Sales Channel/ViewSales/ViewSales';
+import ManageIspExcel from '../Pages/Master/ISP Master/ManageISP/ManagIspExcel';
+import ManageIspUi from '../Pages/Master/ISP Master/ManageIspUI/ManageIspUi';
+import BulkuploadMapping from '../Pages/Master/User Master/Bulk Upload Mapping/BulkuploadMapping';
+import ManageUser from '../Pages/Master/User Master/Manage User/ManageUser';
+import LeaveTypes from '../Pages/Master/Attendance Master/Leave Types/LeaveTypes';
+// import LeaveAllocation from '../Pages/Master/Leave Master/Leave allocation/LeaveAllocation';
+import ManageBulletinCategory from '../Pages/SideMenuPages/Bulletin/ManageBulletinCategory/ManageBulletinCategory';
+import CreateBulletin from '../Pages/SideMenuPages/Bulletin/CreateBulletin/CreateBulletin';
+import ViewBulletin from '../Pages/SideMenuPages/Bulletin/ViewBulletin/ViewBulletin';
+import ManageAssesment from '../Pages/SideMenuPages/Learning and Developemnt/Manage Assesment/ManageAssesment';
+import ViewAssesment from '../Pages/SideMenuPages/Learning and Developemnt/ManageAssesmentView/ManageAssesmentView';
+import ManageLDCategory from '../Pages/SideMenuPages/Learning and Developemnt/Manage L&D Category/ManageL&DCategory';
+import ManageLDContent from '../Pages/SideMenuPages/Learning and Developemnt/Manage L&D Content/ManageLDContent';
+import ManageLDContentView from '../Pages/SideMenuPages/Learning and Developemnt/Manage L&D Content View/ManageL&DContentView';
+import CreateSurveyLink from '../Pages/SideMenuPages/Survey/Create Survey Link/CreateSurveyLink';
+import CreateSurveyCustomer from '../Pages/SideMenuPages/Survey/Create Survey Customer/CreateSurveyCustomer';
+import ViewSurvey from '../Pages/SideMenuPages/Survey/View Survey/ViewSurvey';
+import AttendanceRegularization from '../Pages/Master/Attendance Master/Attendance Regularization/AttendanceRegularization';
+import BalanceLeaveExcel from '../Pages/Master/Attendance Master/Balance Leave excel/BalanceLeaveExcel';
+import BalanceLeaveUi from '../Pages/Master/Attendance Master/Balance Leave UI/BalanceLeaveUi';
 
 // Will Implement this later how we can use Lazy loading for pages
 // const Dashboard = lazy(() => import('../Pages/Dashboard/Dashboard'));
@@ -51,6 +77,42 @@ const AllRoutes = () => {
             <Route path="/createisp" element={<Createisp />} />
             <Route path="/ispincentive" element={<ISPincentive />} />
             <Route path="/sku" element={<SKU />} />
+            <Route path="/addretailerexcel" element={<AddRetailerExcel />} />
+            <Route path="/addretailerui" element={<AddRetailerUi />} />
+            <Route path="/viewretailer" element={<ViewRetailer />} />
+            <Route path="/addsalesexcel" element={<AddSalesExcel />} />
+            <Route path="/addsalesui" element={<AddSalesUi />} />
+            <Route path="/viewsales" element={<ViewSales />} />
+            <Route path="/manageispexcel" element={<ManageIspExcel />} />
+            <Route path="/manageispui" element={<ManageIspUi />} />
+            <Route path="/manageuser" element={<ManageUser />} />
+            <Route path="/bulkuploadmapping" element={<BulkuploadMapping />} />
+            <Route path="/leavetypes" element={<LeaveTypes />} />
+            {/* <Route path="/leaveallocation" element={<LeaveAllocation />} /> */}
+            <Route
+              path="/managebulletincategory"
+              element={<ManageBulletinCategory />}
+            />
+            <Route path="/createbulletin" element={<CreateBulletin />} />
+            <Route path="/viewbulletin" element={<ViewBulletin />} />
+            <Route path="/manageassesment" element={<ManageAssesment />} />
+            <Route path="/viewassesment" element={<ViewAssesment />} />
+            <Route path="/managel&dcategory" element={<ManageLDCategory />} />
+            <Route path="/managel&dcontent" element={<ManageLDContent />} />
+            <Route path="/viewl&dcontent" element={<ManageLDContentView />} />
+            <Route path="/createsurveylink" element={<CreateSurveyLink />} />
+            <Route
+              path="/createsurveycustomer"
+              element={<CreateSurveyCustomer />}
+            />
+            <Route path="/viewsurvey" element={<ViewSurvey />} />
+            <Route
+              path="/attendanceregularization"
+              element={<AttendanceRegularization />}
+            />
+            <Route path="/balanceleaveexcel" element={<BalanceLeaveExcel />} />
+            <Route path="/balanceleaveui" element={<BalanceLeaveUi />} />
+
             <Route path="*" element={<Notfound />} />
           </Routes>
         </Suspense>

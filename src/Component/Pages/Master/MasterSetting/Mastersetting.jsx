@@ -42,6 +42,34 @@ const Mastersetting = () => {
   const handleModelClick = () => {
     navigate("/model");
   };
+  const handleRetailerClick = () => {
+    navigate("/addretailerexcel");
+  };
+   const handleSalesClick = () => {
+     navigate("/addsalesexcel");
+   };
+    
+   const handleManageIspExcel = () => {
+     navigate("/manageispexcel");
+   };
+    const handleBulkUploadMapping = () => {
+      navigate("/bulkuploadmapping");
+    };
+  const handleManageUser= () => {
+    navigate("/manageuser");
+  };
+   const handleLeaveTypes = () => {
+     navigate("/leavetypes");
+   };
+  
+
+    const handleAttendanceRegularization = () => {
+      navigate("/attendanceregularization");
+    };
+const handleBalanceLeaveUpdate = () => {
+  navigate("/balanceleaveexcel");
+};
+
   return (
     <Col className="p-0">
       <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom">
@@ -200,6 +228,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer app-mastersetting-btns  me-4 app-btns-format "
+          onClick={handleRetailerClick}
         >
           {MenuConstants.manage} {MenuConstants.retailer}
         </Col>
@@ -215,6 +244,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer mt-2 app-mastersetting-btns me-4 app-btns-format "
+          onClick={handleSalesClick}
         >
           {MenuConstants.manageSalesChannel}
         </Col>
@@ -248,6 +278,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleManageUser}
         >
           {MenuConstants.userMaster}
         </Col>
@@ -257,6 +288,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleBulkUploadMapping}
         >
           {MenuConstants.bulkUploadMapping}
         </Col>
@@ -296,7 +328,7 @@ const Mastersetting = () => {
       </Row>
 
       <Row className="ms-4 fontcolorblackbold mt-4">
-        {MenuConstants.leaveMaster}
+        {MenuConstants.attendance} Master
       </Row>
       <Row className="ms-4">
         <Col
@@ -305,6 +337,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleLeaveTypes}
         >
           {MenuConstants.manageLeaveTypes}
         </Col>
@@ -314,8 +347,19 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleAttendanceRegularization}
         >
-          {MenuConstants.leaveAllocation}
+          {MenuConstants.attendance} Regularization
+        </Col>
+        <Col
+          xxl={2}
+          xl={2}
+          lg={2}
+          md={2}
+          className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleBalanceLeaveUpdate}
+        >
+          {MenuConstants.balance} Leave Update
         </Col>
       </Row>
       <Row className="ms-4 fontcolorblackbold mt-4">
@@ -328,6 +372,7 @@ const Mastersetting = () => {
           lg={2}
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleManageIspExcel}
         >
           {MenuConstants.manageISP}
         </Col>

@@ -388,7 +388,7 @@ const handleFormSubmit3 = (e) => {
                   </Col>
 
                   <Col className="mt-5 fontcolororange cursorpointer" lg={3}>
-                    {MenuConstants.download} User Template
+                    {MenuConstants.download} {MenuConstants.user} Template
                   </Col>
                   <Col className="mt-5 fontcolororange cursorpointer" lg={3}>
                     {MenuConstants.download} Reference Code

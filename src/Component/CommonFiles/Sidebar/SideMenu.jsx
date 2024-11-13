@@ -26,16 +26,62 @@ const SideMenu = () => {
   const shouldTargethighlight = ["/createtarget", "/viewtarget"].includes(
     location.pathname
   );
+  const shouldSurveyhighlight = [
+    "/createsurveylink",
+    "/createsurveycustomer",
+    "/viewsurvey"
+  ].includes(location.pathname);
 
   const shouldISPIncentiveHighlight = ["/createisp", "/ispincentive"].includes(
     location.pathname
   );
-
-  const handleTarget = () => {
-    navigate("/createtarget"); // Navigate to the settings route
+ const handleTarget = () => {
+   navigate("/createtarget"); // Navigate to the settings route
+ };
+  const handleSurvey = () => {
+    navigate("/createsurveylink"); // Navigate to the settings route
   };
-  const handleispincentive = () => {
-    navigate("/createisp"); // Navigate to the settings route
+ const handleispincentive = () => {
+   navigate("/createisp"); // Navigate to the settings route
+ };
+
+  const shouldManageBulletinHighlight = [
+    "/createbulletin",
+    "/viewbulletin",
+  ].includes(location.pathname);
+  const shouldManageBulletinCategoryHighlight = [
+     "/managebulletincategory",
+   ].includes(location.pathname);
+  const handleBulletinClick = () => {
+    setBulletinOpen(!bulletinOpen);
+  };
+  const handleManageBulletinClick = () => {
+    navigate("/createbulletin");
+  };
+  const handleManageBulletinCategoryClick = () => {
+    navigate("/managebulletincategory");
+  };
+  const activeStyle = "backgroundcolor p-1 fontcolorwhite"; // Add or modify styles as needed
+const shouldManageAssesmentHighlight = [
+  "/manageassesment",
+  "/viewassesment",
+].includes(location.pathname);
+const shouldLDContentHighlight = [
+  "/viewl&dcontent",
+  "/managel&dcontent",
+].includes(location.pathname);
+const shouldLDCategoryHighlight = [
+  "/managel&dcategory",
+].includes(location.pathname);
+
+  const handleManageAssessmentClick = () => {
+    navigate("/manageassesment");
+  };
+  const handleLDCategoryClick = () => {
+    navigate("/managel&dcategory");
+  };
+  const handleLDContentClick = () => {
+    navigate("/managel&dcontent");
   };
   return (
     <Col
@@ -112,7 +158,7 @@ const SideMenu = () => {
                   className="me-2 fontcolorwhite"
                   src="./Targetw.png"
                   alt=""
-                  style={{ width: "20px", height: "20px" }}
+                  // style={{ width: "20px", height: "20px" }}
                 />
                 {MenuConstants.target}
               </Col>
@@ -263,33 +309,71 @@ const SideMenu = () => {
             />
           </Col>
           {learningOpen && (
-            <Col className="ms-3 mt-2">
-              <Col className="mediumfont cursorpointer">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+            <>
+              <Col
+                className={` mt-2 cursorpointer mediumfont ${
+                  shouldLDCategoryHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleLDCategoryClick}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.manageCategory}
               </Col>
-              <Col className="cursorpointer mediumfont mt-2">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+
+              <Col
+                className={`mt-2 cursorpointer mediumfont ${
+                  shouldLDContentHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleLDContentClick}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.manageContent}
               </Col>
-              <Col className="cursorpointer mediumfont mt-2">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+
+              <Col
+                className={`mt-2 cursorpointer mediumfont ${
+                  shouldManageAssesmentHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleManageAssessmentClick}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.manageAssessment}
               </Col>
+            </>
+          )}
+          {shouldSurveyhighlight ? (
+            <Col
+              className={`align-items-center d-flex cursorpointer mediumfontbold mt-3 fontcolorwhite app-sidemenu-mainmenu ${
+                shouldSurveyhighlight ? "backgroundcolor" : "sidemenuwidth"
+              }`}
+            >
+              <Col className="ms-2">
+                <img
+                  className="me-2 fontcolorwhite"
+                  src="./surveyw.png"
+                  alt=""
+                  // style={{ width: "20px", height: "20px" }}
+                />
+                {MenuConstants.survey}
+              </Col>
+            </Col>
+          ) : (
+            <Col
+              className="mt-3 mediumfont ms-2 cursorpointer"
+              onClick={handleSurvey}
+            >
+              <img
+                className="me-2"
+                src="./survey.png"
+                alt=""
+                style={{ width: "20px", height: "20px" }}
+              />
+              {MenuConstants.survey}
             </Col>
           )}
-          <Col className="mt-3 mediumfont ms-2">
-            <img
-              className="me-2"
-              src="./survey.png"
-              alt="Survey"
-              style={{ width: "20px", height: "20px" }}
-            />
-            {MenuConstants.survey}
-          </Col>
           <Col
             className="mt-3 cursorpointer mediumfont ms-2 position-relative"
-            onClick={() => setBulletinOpen(!bulletinOpen)}
+            onClick={handleBulletinClick}
           >
             <img
               className="me-2"
@@ -303,17 +387,29 @@ const SideMenu = () => {
               icon={bulletinOpen ? faChevronUp : faChevronDown}
             />
           </Col>
+
           {bulletinOpen && (
-            <Col className="ms-3 mt-2">
-              <Col className="cursorpointer mediumfont">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
-                {MenuConstants.manageBullettinCategory}
-              </Col>
-              <Col className="cursorpointer mediumfont mt-2">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+            <>
+              <Col
+                className={` mt-2 cursorpointer mediumfont ${
+                  shouldManageBulletinHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleManageBulletinClick}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.manageBulletin}
               </Col>
-            </Col>
+
+              <Col
+                className={`mt-2 cursorpointer mediumfont ${
+                  shouldManageBulletinCategoryHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleManageBulletinCategoryClick}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
+                {MenuConstants.manageBulletin} Category
+              </Col>
+            </>
           )}
           <Col className="mt-3 mediumfont ms-2">
             <img
