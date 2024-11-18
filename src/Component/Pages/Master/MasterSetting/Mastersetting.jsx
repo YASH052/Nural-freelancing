@@ -1,9 +1,7 @@
-import { Row, Col} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { MenuConstants } from "../../../CommonFiles/constant/MenuConstants"
+import { MenuConstants } from "../../../CommonFiles/constant/MenuConstants";
 const Mastersetting = () => {
-
-
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   const handleCountryClick = () => {
@@ -12,9 +10,16 @@ const Mastersetting = () => {
   const handlePrice = () => {
     navigate("/uploadprice"); // Redirect to the /country route on click
   };
-   const handlePriceList = () => {
-     navigate("/pricelist");
-   };
+  const handleAddAgency = () => {
+    navigate("/addagency"); // Redirect to the /country route on click
+  };
+  const handlePreBookingSku = () => {
+    navigate("/prebookingsku");
+  };
+
+  const handlePriceList = () => {
+    navigate("/pricelist");
+  };
   const handleStateClick = () => {
     navigate("/state"); // Redirect to the /country route on click
   };
@@ -36,39 +41,38 @@ const Mastersetting = () => {
   const handleSubCategoryClick = () => {
     navigate("/subcategory");
   };
-   const handleSKUClick = () => {
-     navigate("/sku");
-   };
+  const handleSKUClick = () => {
+    navigate("/sku");
+  };
   const handleModelClick = () => {
     navigate("/model");
   };
   const handleRetailerClick = () => {
     navigate("/addretailerexcel");
   };
-   const handleSalesClick = () => {
-     navigate("/addsalesexcel");
-   };
-    
-   const handleManageIspExcel = () => {
-     navigate("/manageispexcel");
-   };
-    const handleBulkUploadMapping = () => {
-      navigate("/bulkuploadmapping");
-    };
-  const handleManageUser= () => {
+  const handleSalesClick = () => {
+    navigate("/addsalesexcel");
+  };
+
+  const handleManageIspExcel = () => {
+    navigate("/manageispexcel");
+  };
+  const handleBulkUploadMapping = () => {
+    navigate("/bulkuploadmapping");
+  };
+  const handleManageUser = () => {
     navigate("/manageuser");
   };
-   const handleLeaveTypes = () => {
-     navigate("/leavetypes");
-   };
-  
+  const handleLeaveTypes = () => {
+    navigate("/leavetypes");
+  };
 
-    const handleAttendanceRegularization = () => {
-      navigate("/attendanceregularization");
-    };
-const handleBalanceLeaveUpdate = () => {
-  navigate("/balanceleaveexcel");
-};
+  const handleAttendanceRegularization = () => {
+    navigate("/attendanceregularization");
+  };
+  const handleBalanceLeaveUpdate = () => {
+    navigate("/balanceleaveexcel");
+  };
 
   return (
     <Col className="p-0">
@@ -229,7 +233,6 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer app-mastersetting-btns  me-4 app-btns-format "
           onClick={handleRetailerClick}
-          
         >
           {MenuConstants.manage} {MenuConstants.retailer}
         </Col>
@@ -246,7 +249,6 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer mt-2 app-mastersetting-btns me-4 app-btns-format "
           onClick={handleSalesClick}
-          
         >
           {MenuConstants.manageSalesChannel}
         </Col>
@@ -281,7 +283,6 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleManageUser}
-          
         >
           {MenuConstants.userMaster}
         </Col>
@@ -292,7 +293,6 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className=" backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleBulkUploadMapping}
-          
         >
           {MenuConstants.bulkUploadMapping}
         </Col>
@@ -369,7 +369,7 @@ const handleBalanceLeaveUpdate = () => {
       <Row className="ms-4 fontcolorblackbold mt-4">
         {MenuConstants.ISPmaster}
       </Row>
-      <Row className="ms-4 mb-5">
+      <Row className="ms-4 ">
         <Col
           xxl={2}
           xl={2}
@@ -377,7 +377,6 @@ const handleBalanceLeaveUpdate = () => {
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
           onClick={handleManageIspExcel}
-          
         >
           {MenuConstants.manageISP}
         </Col>
@@ -387,6 +386,7 @@ const handleBalanceLeaveUpdate = () => {
           lg={2}
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handlePreBookingSku}
         >
           {MenuConstants.preBookingSKU}
         </Col>
@@ -400,8 +400,21 @@ const handleBalanceLeaveUpdate = () => {
           {MenuConstants.rankingWeightage}
         </Col>
       </Row>
+      <Row className="ms-4 mt-4 fontcolorblackbold">{MenuConstants.agency}</Row>
+      <Row className="ms-4 mb-5">
+        <Col
+          xxl={2}
+          xl={2}
+          lg={2}
+          md={2}
+          className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleAddAgency}
+        >
+          {MenuConstants.agency}
+        </Col>
+      </Row>
     </Col>
   );
 };
 
-export default Mastersetting
+export default Mastersetting;
