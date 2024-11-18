@@ -12,6 +12,13 @@ const Mastersetting = () => {
   const handlePrice = () => {
     navigate("/uploadprice"); // Redirect to the /country route on click
   };
+   const handleAddAgency = () => {
+     navigate("/addagency"); // Redirect to the /country route on click
+   };
+    const handlePreBookingSku = () => {
+      navigate("/prebookingsku"); 
+    }
+
    const handlePriceList = () => {
      navigate("/pricelist");
    };
@@ -369,7 +376,7 @@ const handleBalanceLeaveUpdate = () => {
       <Row className="ms-4 fontcolorblackbold mt-4">
         {MenuConstants.ISPmaster}
       </Row>
-      <Row className="ms-4 mb-5">
+      <Row className="ms-4 ">
         <Col
           xxl={2}
           xl={2}
@@ -387,6 +394,7 @@ const handleBalanceLeaveUpdate = () => {
           lg={2}
           md={2}
           className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handlePreBookingSku}
         >
           {MenuConstants.preBookingSKU}
         </Col>
@@ -400,6 +408,22 @@ const handleBalanceLeaveUpdate = () => {
           {MenuConstants.rankingWeightage}
         </Col>
       </Row>
+       <Row className="ms-4 mt-4 fontcolorblackbold">
+        {MenuConstants.agency}
+      </Row>
+      <Row className="ms-4 mb-5">
+        <Col
+          xxl={2}
+          xl={2}
+          lg={2}
+          md={2}
+          className="backgroundcolor fontcolorwhite cursorpointer  me-4 mt-2 app-mastersetting-btns app-btns-format "
+          onClick={handleAddAgency}
+          
+        >
+          {MenuConstants.agency}
+        </Col>
+        </Row>
     </Col>
   );
 };

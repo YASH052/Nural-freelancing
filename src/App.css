@@ -2,6 +2,9 @@
   border: 2px solid rgb(231, 224, 224);
   border-radius: 4px;
 }
+.app-margin-start{
+  margin-left: 150px;
+}
 .app-country-boder-bottom{
 border-bottom: 2px solid rgb(148, 143, 143);
 }
@@ -105,10 +108,43 @@ border-bottom: 2px solid rgb(148, 143, 143);
  .custom-modal-width .modal-dialog {
   min-width: 60%!important; /* Set to desired width, e.g., 80% of viewport width */
 }
+.custom-modal-width1 .modal-dialog {
+  min-width: 80%!important; /* Set to desired width, e.g., 80% of viewport width */
+  /* position: absolute; */
+  margin-right: 1%;
+}
 .equal-width-table th,
 .equal-width-table td {
   width: 10%; /* Adjust based on the number of columns */
   text-align: center;
+}
+
+ /* For checkboxes inside the specific rows */
+ .app-custom-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+/* For text inputs inside the specific rows */
+ .app-custom-input {
+  width: 150px;
+  height: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ED713E;
+}
+
+/* Hover effect for text inputs inside the specific rows */
+ .app-custom-input:hover {
+  border-width: 1px!important;
+  border-style: solid!important;
+  border-color: #ED713E!important;
+}
+
+.app-icons-style{
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px #bfbfbf;
+  /* max-width: 10%; */
 }
 .table-add-icon-width{
   max-width: 20px!important;

@@ -4,6 +4,9 @@
 .fontcolorblackbold {
     font-weight: 600;
 }
+.backgroundcoloroffwhite {
+    background-color: #bebebe;
+}
 .backgroundcolor{
     background-color: #ED713E!important;
 }
@@ -14,5 +17,5 @@
     border: 0.7px solid #ED713E!important;
 }
 .fontcolororange {
-color: #ED713E;
+color: #ED713E!important;
 }

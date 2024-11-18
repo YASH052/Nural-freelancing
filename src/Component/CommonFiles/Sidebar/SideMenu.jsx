@@ -35,15 +35,34 @@ const SideMenu = () => {
   const shouldISPIncentiveHighlight = ["/createisp", "/ispincentive"].includes(
     location.pathname
   );
+    const shouldReportHighlight = [
+      "/serialnomov",
+      "/primarytotertiarytrack",
+    ].includes(location.pathname);
  const handleTarget = () => {
    navigate("/createtarget"); // Navigate to the settings route
  };
-  const handleSurvey = () => {
-    navigate("/createsurveylink"); // Navigate to the settings route
+ const handleManageTask = () => {
+   navigate("/managetask"); // Navigate to the settings route
+ };
+ const handleReports = () => {
+   navigate("/primarytotertiarytrack"); // Navigate to the settings route
+ };
+ const handleManageCompetitionData = () => {
+   navigate("/managecompetitiondata"); // Navigate to the settings route
+ };
+ const handleTaskCategoryMaster = () =>{
+navigate("/taskcategorymaster")
+ };
+ const handleSurvey = () => {
+    navigate("/createsurveylink"); 
   };
  const handleispincentive = () => {
-   navigate("/createisp"); // Navigate to the settings route
+   navigate("/createisp"); 
  };
+  const handleattendancedashboard = () => {
+    navigate("/attendancedashboard"); 
+  };
 
   const shouldManageBulletinHighlight = [
     "/createbulletin",
@@ -73,6 +92,14 @@ const shouldLDContentHighlight = [
 const shouldLDCategoryHighlight = [
   "/managel&dcategory",
 ].includes(location.pathname);
+
+const shouldTaskCatHighlight = [
+  "/taskcategorymaster",
+].includes(location.pathname);
+const shouldManageTaskHighlight = ["/managetask"].includes(location.pathname);
+const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
+  location.pathname
+);
 
   const handleManageAssessmentClick = () => {
     navigate("/manageassesment");
@@ -106,7 +133,10 @@ const shouldLDCategoryHighlight = [
       </Col>
       {!showMenu && (
         <>
-          <Col className="mt-3 mediumfont ms-2">
+          <Col
+            className="mt-3 cursorpointer mediumfont ms-2"
+            onClick={handleattendancedashboard}
+          >
             <img
               src="./Dashboard.png"
               className="me-2"
@@ -251,20 +281,31 @@ const shouldLDCategoryHighlight = [
             />
           </Col>
           {merchandizingOpen && (
-            <Col className="ms-3 mt-2">
-              <Col className="cursorpointer mediumfont">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+            <>
+              <Col
+                className={` mt-2 cursorpointer mediumfont ${
+                  shouldTaskCatHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleTaskCategoryMaster}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.taskCategoryMaster}
               </Col>
-              <Col className="cursorpointer mediumfont mt-2">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+              <Col
+                className={`mt-2 cursorpointer mediumfont ${
+                  shouldManageTaskHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleManageTask}
+              >
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.manageTask}
               </Col>
-              <Col className="cursorpointer mediumfont mt-2">
-                <FontAwesomeIcon icon={faArrowRightLong} />{" "}
+
+              <Col className="cursorpointer mediumfont mt-2 ms-1">
+                <FontAwesomeIcon className="ms-2" icon={faArrowRightLong} />{" "}
                 {MenuConstants.updateTask}
               </Col>
-            </Col>
+            </>
           )}
           <Col
             className="mt-3 cursorpointer mediumfont ms-2 position-relative"
@@ -283,14 +324,21 @@ const shouldLDCategoryHighlight = [
             />
           </Col>
           {competitionOpen && (
-            <Col className="ms-4 mt-2">
-              <Col className="cursorpointer mediumfont">
-                {MenuConstants.submenucompetetion2}
+            <>
+              <Col
+                className={`mt-2 cursorpointer mediumfont ${
+                  shouldManageCompetitionHighlight ? activeStyle : "ms-1"
+                }`}
+                onClick={handleManageCompetitionData}
+              >
+                <FontAwesomeIcon className="ms-1" icon={faArrowRightLong} />{" "}
+                Manage Competition Data
               </Col>
-              <Col className="cursorpointer mediumfont">
-                {MenuConstants.submenucompetetion1}
-              </Col>
-            </Col>
+              {/* <Col className="cursorpointer mediumfont">
+                <FontAwesomeIcon icon={faArrowRightLong} /> Manage Competition
+                Data
+              </Col> */}
+            </>
           )}
           <Col
             className="mt-3 cursorpointer mediumfont ms-2 position-relative"
@@ -420,20 +468,45 @@ const shouldLDCategoryHighlight = [
             />
             {MenuConstants.feedback}
           </Col>
-          <Col className="mt-3 mediumfont ms-2">
-            <img
-              src="./report.png"
-              className="me-2"
-              alt="Reports"
-              style={{ width: "20px", height: "20px" }}
-            />
-            {MenuConstants.reports}
-          </Col>
+
+          {shouldReportHighlight ? (
+            <Col
+              className={`align-items-center d-flex cursorpointer  mt-3  app-sidemenu-mainmenu ${
+                shouldReportHighlight ? "" : "sidemenuwidth"
+              }`}
+            >
+              <Col className="ms-2">
+                <img
+                  className="me-2 fontcolorwhite"
+                  src="./report.png"
+                  alt=""
+                  // style={{ width: "20px", height: "20px" }}
+                />
+                {MenuConstants.reports}
+              </Col>
+            </Col>
+          ) : (
+            <Col
+              className="mt-3 mediumfont ms-2 cursorpointer"
+              onClick={handleReports}
+            >
+              <img
+                className="me-2"
+                src="./report.png"
+                alt=""
+                style={{ width: "20px", height: "20px" }}
+              />
+              {MenuConstants.reports}
+            </Col>
+          )}
         </>
       )}
       {showMenu && (
         <>
-          <Col className="mt-3 mediumfont ms-2">
+          <Col
+            className="mt-3 mediumfont ms-2"
+            // onclick={handleattendancedashboard}
+          >
             <img
               src="./Dashboard.png"
               className="me-2"
