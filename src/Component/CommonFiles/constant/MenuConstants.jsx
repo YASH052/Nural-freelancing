@@ -22,8 +22,6 @@ export const MenuConstants = {
   updateTask: "Update Task",
   competition: "Competition",
   submenucompetetion1: "Competition Submenu 1",
-  agency: "Agency",
-  client: "Client",
   submenucompetetion2: "Competition Submenu 2",
   learningAndDevelopment: "Learning & Development",
   manageCategory: "Manage L & D Category",
