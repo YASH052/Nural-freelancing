@@ -3,15 +3,39 @@ import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
 import { Row, Col, Button, Container, Form, Table, Modal } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
-import { Autocomplete, Checkbox, FormControl, TextField } from "@mui/material";
+import { Autocomplete, Checkbox, FormControl, InputAdornment, Menu, MenuItem, TextField } from "@mui/material";
 import { BsFilter } from "react-icons/bs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import FilterAltIcon from "@mui/icons-material/FilterAlt"; // Using Material-UI filter icon
 let data = [];
 const PrimaryToTertiaryTrack = () => {
   const navigate = useNavigate();
   const options = ["Format1", "Custom"];
+ const [anchorEl, setAnchorEl] = useState(null); // State to control the menu
+ const [selectedColumn, setSelectedColumn] = useState(null); // Track which column is being sorted
+ const [filters, setFilters] = useState(Array(6).fill("")); // Store filters for each column
+
+ // Handle opening the filter menu
+ const handleFilterClick = (event, columnIndex) => {
+   setAnchorEl(event.currentTarget);
+   setSelectedColumn(columnIndex);
+ };
+
+ // Handle closing the menu
+ const handleMenuClose = () => {
+   setAnchorEl(null);
+ };
+
+ // Handle selecting a filter option
+ const handleSortOption = (option) => {
+   // Update the filter value for the selected column
+   const updatedFilters = [...filters];
+   updatedFilters[selectedColumn] = option;
+   setFilters(updatedFilters);
+   handleMenuClose();
+ };
   const handleOptionChange = (event, value) => {
     if (value === "Custom") {
       navigate("/serialnomov"); // Replace '/custom-page' with your target route
@@ -376,7 +400,7 @@ const PrimaryToTertiaryTrack = () => {
                     </Form>
                   </Modal.Body>
                 </Modal>
-                <Row className="mt-3">
+                <Row className="mt-3 mb-2">
                   <Col xxl={2} xl={2} lg={2} md={2} className="col-md-3 ">
                     <Button
                       onClick={setShowModal}
@@ -396,7 +420,6 @@ const PrimaryToTertiaryTrack = () => {
                     </Button>
                   </Col>
                 </Row>
-                <Row className="ms-2 mb-3"></Row>
               </Row>
             </Form>
             <Col className="cursorpointer bordercolororange mediumfont backgroundcolorsecondary fontcolorwhite app-btns-format">
@@ -430,7 +453,7 @@ const PrimaryToTertiaryTrack = () => {
                   </div>
                 </Col>
                 <Table className="equal-width-table">
-                  <thead className=" smallfontsemibold">
+                  <thead className="smallfontsemibold">
                     <tr>
                       <th className="fontcolorwhite backgroundcolor">
                         Header 1
@@ -452,148 +475,34 @@ const PrimaryToTertiaryTrack = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="">
-                    <tr className="">
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
+                  <tbody>
+                    {/* First Row with TextFields and Filters */}
+                    <tr>
+                      {filters.map((filter, index) => (
+                        <td className="text-end" key={index}>
+                          {/* TextField with filter value and filter icon */}
                           <TextField
                             variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
+                            size="small"
+                            // placeholder={`Filter ${index + 1}`}
+                            value={filter} // Display the selected filter
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <BsFilter
+                                    style={{ cursor: "pointer", right: "30px" }}
+                                    onClick={(e) => handleFilterClick(e, index)}
+                                  />
+                                </InputAdornment>
+                              ),
                             }}
                           />
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className="text-end">
-                        <div
-                          style={{
-                            position: "relative",
-                            display: "inline-flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            variant="standard"
-                            className=""
-                            style={{ paddingRight: "45px" }} // Add padding to avoid text overlap
-                          />
-                          <BsFilter
-                            style={{
-                              position: "absolute",
-                              right: 30,
-                              bottom: 0, // Adjust this value for vertical alignment
-                              cursor: "pointer",
-                            }}
-                          />
-                        </div>
-                      </td>
+                        </td>
+                      ))}
                     </tr>
-                    <tr className="">
+
+                    {/* Example Data Row */}
+                    <tr>
                       <td>xxxx</td>
                       <td>xxxxx</td>
                       <td>xxxx</td>
@@ -602,6 +511,23 @@ const PrimaryToTertiaryTrack = () => {
                       <td>xxxx</td>
                     </tr>
                   </tbody>
+
+                  {/* Sorting Menu */}
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleMenuClose}
+                  >
+                    <MenuItem onClick={() => handleSortOption("Sort A-Z")}>
+                      Sort A-Z
+                    </MenuItem>
+                    <MenuItem onClick={() => handleSortOption("Sort Z-A")}>
+                      Sort Z-A
+                    </MenuItem>
+                    <MenuItem onClick={() => handleSortOption("Sort By Date")}>
+                      Sort By Date
+                    </MenuItem>
+                  </Menu>
                 </Table>
                 <Row className="  app-pageformat mt5 mb-3">
                   <Col xs="auto">

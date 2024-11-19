@@ -14,7 +14,7 @@ function App() {
   const isAuthRoute = ['/login', '/changePassword', '/forgotPassword','/'].includes(location.pathname);
 
   return (
-    <Row className="ms-0">
+    <Row className="ms-0 marginnone">
       {isAuthRoute ? (
         <AuthRoutes />
       ) : (

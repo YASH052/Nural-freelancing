@@ -47,6 +47,9 @@ border-bottom: 2px solid rgb(148, 143, 143);
 .paddingleft-mastersettings{
   padding-left: 12px;
 }
+.backgroundcoloroffwhite{
+  background-color: #a8a8a8;
+}
 .sidemenubg {
     background-color: #faf7ff;
     min-height: 100vh; /* Minimum height is the full viewport */
@@ -54,6 +57,10 @@ border-bottom: 2px solid rgb(148, 143, 143);
 }
 .paddingnone{
   padding: 0!important;
+}
+.marginnone{
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 .sidemenuwidth { 
     max-width: 35px;
@@ -119,13 +126,27 @@ border-bottom: 2px solid rgb(148, 143, 143);
   text-align: center;
 }
 
- /* For checkboxes inside the specific rows */
+ 
  .app-custom-checkbox {
   width: 20px;
   height: 20px;
 }
+.no-bg-hover {
+  background-color: transparent!important;
+  border: none;                
+  
+}
 
-/* For text inputs inside the specific rows */
+.no-bg-hover:hover {
+  color: #ed713e !important;;
+  text-decoration: underline;    
+}
+
+.no-bg-hover:focus {
+  outline: none;                 
+  box-shadow: none;              
+}
+
  .app-custom-input {
   width: 150px;
   height: 20px;

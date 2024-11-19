@@ -56,12 +56,12 @@ import ManageTask from "../Pages/SideMenuPages/Merchandizing/ManageTask/ManageTa
 import TaskCategoryMaster from "../Pages/SideMenuPages/Merchandizing/Task Category Master/TaskCategoryMaster";
 import PrimaryToTertiaryTrack from "../Pages/SideMenuPages/ReportsPanel/PrimaryToTertiaryTrack/PrimaryToTertiaryTrack";
 import SerialNumberMovementum from "../Pages/SideMenuPages/ReportsPanel/SerialNumberMovement/SerialNumberMovementum";
-// import CreateClient from "../Pages/SideMenuPages/Client/CreateClient/CreateClient";
-// import ManageAppMenua from "../Pages/SideMenuPages/Client/Manage App Menu/ManageAppMenu";
-// import ManageWebMenu from "../Pages/SideMenuPages/Client/Manage Web Menu/ManageWebMenu";
-// import ManageAttendanceDashboard from "../Pages/SideMenuPages/Dashboards/Attendance Dashboard/AttendanceDashboard";
-// import SalesTrend from "../Pages/SideMenuPages/Dashboards/Sales Trend/SalesTrend";
-// import ISPDashboard from "../Pages/SideMenuPages/Dashboards/ISP Dashboard/ISPDashboard";
+import CreateClient from "../Pages/SideMenuPages/Client/CreateClient/CreateClient"
+import ManageAppMenua from "../Pages/SideMenuPages/Client/ManageAppMenu/ManageAppMenu";
+import ManageWebMenu from "../Pages/SideMenuPages/Client/ManageWebMenu/ManageWebMenu";
+import ManageAttendanceDashboard from "../Pages/SideMenuPages/Dashboards/AttendanceDashboard/AttendanceDashboard";
+import SalesTrend from "../Pages/SideMenuPages/Dashboards/SalesTrend/SalesTrend";
+import ISPDashboard from "../Pages/SideMenuPages/Dashboards/ISPDashboard/ISPDashboard";
 
 // Will Implement this later how we can use Lazy loading for pages
 // const Dashboard = lazy(() => import('../Pages/Dashboard/Dashboard'));
@@ -133,25 +133,14 @@ const AllRoutes = () => {
           />
           <Route path="/managetask" element={<ManageTask />} />
           <Route path="/taskcategorymaster" element={<TaskCategoryMaster />} />
-          <Route
-            path="/primarytotertiarytrack"
-            element={<PrimaryToTertiaryTrack />}
-          />
+          <Route path="/primarytotertiarytrack" element={<PrimaryToTertiaryTrack />}/>
           <Route path="/serialnomov" element={<SerialNumberMovementum />} />
-          {/* 
-         
-          
-         
-          <Route
-            path="/attendancedashboard"
-            element={<ManageAttendanceDashboard />}
-          /> */}
-          {/* <Route path="/createclient" element={<CreateClient />} />
+          <Route path="/attendancedashboard" element={<ManageAttendanceDashboard />}/>
+          <Route path="/salestrend" element={<SalesTrend />} />
+          <Route path="/ispdashboard" element={<ISPDashboard />} />
+          <Route path="/createclient" element={<CreateClient />} />
           <Route path="/manageappmenu" element={<ManageAppMenua />} />
           <Route path="/managewebmenu" element={<ManageWebMenu />} />
-         
-          <Route path="/salestrend" element={<SalesTrend />} />
-          <Route path="/ispdashboard" element={<ISPDashboard />} /> */}
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Suspense>

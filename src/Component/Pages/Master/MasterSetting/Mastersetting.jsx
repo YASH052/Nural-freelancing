@@ -75,8 +75,8 @@ const Mastersetting = () => {
   };
 
   return (
-    <Col className="p-0">
-      <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom">
+    <Row className="">
+      <Col className="mt-1 fontcolorblackbold borderbottom">
         {MenuConstants.masterSetting}
       </Col>
       <Row className="ms-4 mt-2 fontcolorblackbold">
@@ -413,7 +413,7 @@ const Mastersetting = () => {
           {MenuConstants.agency}
         </Col>
       </Row>
-    </Col>
+    </Row>
   );
 };
 

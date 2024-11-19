@@ -27,14 +27,7 @@ const ManageAssesment = () => {
     fileInputRef.current.click(); // Trigger the click event on the hidden file input
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFileName(file.name); // Update the state with the file name
-    } else {
-      setSelectedFileName(MenuConstants.nofileselected); // Reset if no file is selected
-    }
-  };
+ ;
   const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting"); // Navigate to the settings route
@@ -94,12 +87,62 @@ const ManageAssesment = () => {
     setSelectedFileName("");
     setErrors({});
   };
+ const [questions, setQuestions] = useState([
+   {
+     questionType: "",
+     correctOption: "",
+     options: { A: "", B: "", C: "", D: "" },
+     file: null,
+     errors: {},
+   },
+ ]);
+
+ const handleAddQuestion = () => {
+   setQuestions([
+     ...questions,
+     {
+       questionType: "",
+       correctOption: "",
+       options: { A: "", B: "", C: "", D: "" },
+       file: null,
+       errors: {},
+     },
+   ]);
+ };
+
+ const handleInputChange = (index, field, value) => {
+   const updatedQuestions = [...questions];
+   updatedQuestions[index][field] = value;
+   setQuestions(updatedQuestions);
+ };
+
+ const handleOptionChange = (index, option, value) => {
+   const updatedQuestions = [...questions];
+   updatedQuestions[index].options[option] = value;
+   setQuestions(updatedQuestions);
+ };
+
+ const handleAddOption = (index) => {
+   const updatedQuestions = [...questions];
+   const optionCount = Object.keys(updatedQuestions[index].options).length;
+   const newOptionKey = String.fromCharCode(65 + optionCount); // Next option (e.g., E, F, etc.)
+   updatedQuestions[index].options[newOptionKey] = "";
+   setQuestions(updatedQuestions);
+ };
+
+ const handleFileChange = (index, event) => {
+   const file = event.target.files[0];
+   const updatedQuestions = [...questions];
+   updatedQuestions[index].file = file;
+   setQuestions(updatedQuestions);
+ };
+ const options = ["A", "B", "C", "D"];
   return (
     <Container fluid>
       <Row className="mb-5">
         <Row>
           <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom app-LandingPage-setting">
-            {MenuConstants.learningAndDevelopment}    {">"} Manage Assesment
+            {MenuConstants.learningAndDevelopment} {">"} Manage Assesment
           </Col>
           <Row className="ms-4 mt-2 position-relative">
             <Col
@@ -138,7 +181,9 @@ const ManageAssesment = () => {
                     </Col>
                   </Col>
                   <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">{MenuConstants.trainingcategory} </Row>
+                    <Row className="ms-4 mt-3">
+                      {MenuConstants.trainingcategory}{" "}
+                    </Row>
                     <Col className="ms-4 mb-3">
                       <Autocomplete
                         {...defaultProps}
@@ -154,7 +199,9 @@ const ManageAssesment = () => {
                     </Col>
                   </Col>
                   <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">{MenuConstants.trainingcategory}  Content</Row>
+                    <Row className="ms-4 mt-3">
+                      {MenuConstants.trainingcategory} Content
+                    </Row>
                     <Col className="ms-4 mb-3">
                       <Autocomplete
                         {...defaultProps}
@@ -229,7 +276,7 @@ const ManageAssesment = () => {
                     <Row className="ms-4 mt-3">Minimum Percentage(%)</Row>
                     <Col className="ms-4 mb-3">
                       <TextField
-                      type="number"
+                        type="number"
                         variant="standard"
                         className="mt-1 app-input-width"
                       />
@@ -270,16 +317,16 @@ const ManageAssesment = () => {
                   <Row>
                     <Col className="text-end ms-5" lg={4}>
                       <Checkbox />
-                      {MenuConstants.nsm} 
+                      {MenuConstants.nsm}
                     </Col>
                     <Col className="ms-5" lg={4}>
-                      <Checkbox /> {MenuConstants.rsm} 
+                      <Checkbox /> {MenuConstants.rsm}
                     </Col>
                   </Row>
                   <Row>
                     <Col className="text-end ms-5" lg={4}>
                       <Checkbox />
-                      {MenuConstants.asm} 
+                      {MenuConstants.asm}
                     </Col>
                     <Col className="ms-5" lg={4}>
                       <Checkbox /> ISP
@@ -308,105 +355,127 @@ const ManageAssesment = () => {
                     </Col>
                   </Col>
                 </Row>
-                <Row>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Question Type</Row>
-                    <Col className="ms-4 mb-3">
-                      <TextField
-                        // {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    </Col>
-                  </Col>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Correct Option</Row>
-                    <Col className="ms-4 mb-3">
-                      <Autocomplete
-                        {...defaultProps}
-                        disableCloseOnSelect
-                        renderInput={(params) => (
+                {questions.map((question, index) => (
+                  <div key={index} className="mb-4">
+                    <Row>
+                      <Col xxl={3} xl={3} lg={3} md={3}>
+                        <Row className="ms-4 mt-3">Question</Row>
+                        <Col className="ms-4 mb-3">
                           <TextField
-                            {...params}
                             variant="standard"
                             className="mt-1 app-input-width"
+                            value={question.questionType}
+                            onChange={(e) =>
+                              handleInputChange(
+                                index,
+                                "questionType",
+                                e.target.value
+                              )
+                            }
                           />
-                        )}
-                      />
-                    </Col>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Option A</Row>
-                    <Col className="ms-4 mb-3">
-                      <TextField
-                        // {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    </Col>
-                  </Col>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Option B</Row>
-                    <Col className="ms-4 mb-3">
-                      <TextField
-                        // {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    </Col>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Option C</Row>
-                    <Col className="ms-4 mb-3">
-                      <TextField
-                        // {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    </Col>
-                  </Col>
-                  <Col xxl={3} xl={3} lg={3} md={3}>
-                    <Row className="ms-4 mt-3">Option D</Row>
-                    <Col className="ms-4 mb-3">
-                      <TextField
-                        // {...params}
-                        variant="standard"
-                        className="mt-1 app-input-width"
-                      />
-                    </Col>
-                  </Col>
-                  <Col className=" fontcolororange mediumfontbold cursorpointer mt-5">
-                    Add More Questions
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xxl={4} xl={4} lg={4} md={4}>
-                    <Row className="ms-4 mt-4">Image{MenuConstants.upload}</Row>
-                    <Button
-                      className="ms-4 mb-3 app-uploadfile-btn"
-                      onClick={handleButtonClick}
-                    >
-                      {MenuConstants.choose} {MenuConstants.file}
-                    </Button>
-                    <Form.Control
-                      type="file"
-                      ref={fileInputRef}
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                      isInvalid={!!errors.file}
-                    />
-                    <span className="borderbottom">{selectedFileName}</span>
-                    <Form.Control.Feedback type="invalid" className="d-block">
-                      {errors.file}
-                    </Form.Control.Feedback>
-                  </Col>
-                </Row>
+                        </Col>
+                      </Col>
+                      <Col xxl={3} xl={3} lg={3} md={3}>
+                        <Row className="ms-4 mt-3">Correct Option</Row>
+                        <Col className="ms-4 mb-3">
+                          <Autocomplete
+                            disableCloseOnSelect
+                            options={options} // Provide the array of options
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                variant="standard"
+                                className="mt-1 app-input-width"
+                              />
+                            )}
+                            value={question.correctOption}
+                            onChange={(e, newValue) =>
+                              handleInputChange(
+                                index,
+                                "correctOption",
+                                newValue
+                              )
+                            }
+                          />
+                        </Col>
+                      </Col>
+                    </Row>
+
+                    {/* Render Options Dynamically in Two-Column Rows */}
+                    {Object.keys(question.options)
+                      .reduce((acc, option, idx, array) => {
+                        if (idx % 2 === 0) acc.push(array.slice(idx, idx + 2)); // Group into pairs
+                        return acc;
+                      }, [])
+                      .map((pair, rowIdx) => (
+                        <Row key={rowIdx}>
+                          {pair.map((option) => (
+                            <Col xxl={3} xl={3} lg={3} md={3} key={option}>
+                              <Row className="ms-4 mt-3">Option {option}</Row>
+                              <Col className="ms-4 mb-3">
+                                <TextField
+                                  variant="standard"
+                                  className="mt-1 app-input-width"
+                                  value={question.options[option]}
+                                  onChange={(e) =>
+                                    handleOptionChange(
+                                      index,
+                                      option,
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </Col>
+                            </Col>
+                          ))}
+                        </Row>
+                      ))}
+
+                    {/* Add More Options Button */}
+                    <Row>
+                      <Col className="ms-4 mt-3">
+                        <Button
+                          className="text-decoration-none fontcolororange p-0 no-bg-hover"
+                          onClick={() => handleAddOption(index)}
+                        >
+                          Add More Options
+                        </Button>
+                      </Col>
+                    </Row>
+
+                    {/* Image Upload */}
+                    <Row>
+                      <Col xxl={4} xl={4} lg={4} md={4}>
+                        <Row className="ms-4 mt-4">Image Upload</Row>
+                        <Button
+                          className="ms-4 mb-3 app-uploadfile-btn"
+                          onClick={() =>
+                            document
+                              .getElementById(`file-input-${index}`)
+                              .click()
+                          }
+                        >
+                          Choose File
+                        </Button>
+                        <Form.Control
+                          type="file"
+                          id={`file-input-${index}`}
+                          style={{ display: "none" }}
+                          onChange={(event) => handleFileChange(index, event)}
+                        />
+                        <span className="borderbottom">
+                          {question.file
+                            ? question.file.name
+                            : "No file chosen"}
+                        </span>
+                      </Col>
+                    </Row>
+                  </div>
+                ))}
+
+                {/* Add More Question */}
                 <Row className="ms-3 fontcolororange mediumfontbold cursorpointer mt-3 align-items-center">
-                  <span>
+                  <span onClick={handleAddQuestion}>
                     Add More Question{" "}
                     <FontAwesomeIcon className="" icon={faPlus} size="2xs" />
                   </span>
