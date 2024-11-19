@@ -4,11 +4,13 @@ import { Row, Col, Button, Container, Form, Table, Modal } from "react-bootstrap
 
 import { useNavigate } from "react-router-dom";
 import { Autocomplete, Checkbox, FormControl, InputAdornment, Menu, MenuItem, TextField } from "@mui/material";
-import { BsFilter } from "react-icons/bs";
+// import { BsFilter } from "react-icons/bs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import FilterAltIcon from "@mui/icons-material/FilterAlt"; // Using Material-UI filter icon
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import { Filter, FilterCenterFocusOutlined } from "@mui/icons-material";
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 let data = [];
 const PrimaryToTertiaryTrack = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const PrimaryToTertiaryTrack = () => {
  const [anchorEl, setAnchorEl] = useState(null); // State to control the menu
  const [selectedColumn, setSelectedColumn] = useState(null); // Track which column is being sorted
  const [filters, setFilters] = useState(Array(6).fill("")); // Store filters for each column
+ 
 
  // Handle opening the filter menu
  const handleFilterClick = (event, columnIndex) => {
@@ -489,7 +492,7 @@ const PrimaryToTertiaryTrack = () => {
                             InputProps={{
                               endAdornment: (
                                 <InputAdornment position="end">
-                                  <BsFilter
+                                  <FilterListOutlinedIcon
                                     style={{ cursor: "pointer", right: "30px" }}
                                     onClick={(e) => handleFilterClick(e, index)}
                                   />

@@ -12,7 +12,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { Autocomplete, Checkbox, FormControl, TextField } from "@mui/material";
-import { BsFilter } from "react-icons/bs";
+// import { BsFilter } from "react-icons/bs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";

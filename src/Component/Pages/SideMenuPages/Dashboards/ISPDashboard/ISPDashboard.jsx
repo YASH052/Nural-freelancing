@@ -2,7 +2,7 @@ import { Row, Col, Button, Container, Form, Table } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
-import TotalNSMDataChart from "../../../../CommonFiles/Charts/TotalNSMDataChart";
+// import TotalNSMDataChart from "../../../../CommonFiles/Charts/TotalNSMDataChart";
 
 const ISPDashboard = () => {
   const navigate = useNavigate();
@@ -308,7 +308,7 @@ const ISPDashboard = () => {
                   borderRadius: "12px",
                 }}
               >
-                <TotalNSMDataChart/>
+                {/* <TotalNSMDataChart/> */}
               </Col>
             </Row>
           </Row>
