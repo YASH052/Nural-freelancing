@@ -4,6 +4,7 @@
 }
 .app-margin-start{
   margin-left: 150px;
+  
 }
 .app-country-boder-bottom{
 border-bottom: 2px solid rgb(148, 143, 143);
@@ -47,13 +48,23 @@ border-bottom: 2px solid rgb(148, 143, 143);
 .paddingleft-mastersettings{
   padding-left: 12px;
 }
+.margintop{
+  margin-top: 120px;
+}
+.maxheight{
+  max-height: fit-content;
+}
+.marginleft{
+  margin-left: 210px;
+}
+.marginleft2{
+  margin-left: 35px;
+}
 .backgroundcoloroffwhite{
   background-color: #a8a8a8;
 }
 .sidemenubg {
     background-color: #faf7ff;
-    min-height: 100vh; /* Minimum height is the full viewport */
-    height: auto;
 }
 .paddingnone{
   padding: 0!important;
@@ -69,7 +80,9 @@ border-bottom: 2px solid rgb(148, 143, 143);
 .app-border-radius-none{
   border-radius: 0%;
 }
-
+.sidemenuheight{ 
+  height: 100vh;
+}
 .sidemenuborder {
     border-right: 2px solid #DCDCDC;
 }

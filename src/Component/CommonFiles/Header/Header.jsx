@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import './Header.css'
+import "./Header.css";
 import {
   faGear,
   faBell,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate,} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Row, Col, Container, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-import '../../../App.css'
+import "../../../App.css";
 const Header = () => {
   const navigate = useNavigate();
   const handleSetting = () => {
@@ -30,7 +30,7 @@ const Header = () => {
           md={3}
           sm={3}
           xs={3}
-          className="app-LandingPage-client-logo"
+          className="app-LandingPage-client-logo bg-white"
         >
           Client Logo
         </Col>
@@ -109,7 +109,7 @@ const Header = () => {
           md={3}
           sm={3}
           xs={3}
-          className="app-LandingPage-rightpart"
+          className="app-LandingPage-rightpart bg-white"
         >
           <img
             className="p-2"

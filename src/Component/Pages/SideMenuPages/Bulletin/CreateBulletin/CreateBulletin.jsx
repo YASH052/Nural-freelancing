@@ -36,7 +36,7 @@ const CreateBulletin = () => {
     }
   };
   const navigate = useNavigate();
- 
+
   const handleViewBulletin = () => {
     navigate("/viewbulletin"); // Navigate to the settings route
   };
@@ -50,26 +50,26 @@ const CreateBulletin = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [errors, setErrors] = useState({});
-    
-     const [editorData, setEditorData] = useState("");
-   const [wordCount, setWordCount] = useState(0);
-    const [charCount, setCharCount] = useState(0);
-const handleEditorChange = (event, editor) => {
-  const data = editor.getData();
-  setEditorData(data);
 
-  // Calculate word count
-  const text = data.replace(/<[^>]*>/g, ""); // Remove HTML tags
-  const words = text
-    .trim()
-    .split(/\s+/)
-    .filter((word) => word.length > 0);
-  setWordCount(words.length);
+  const [editorData, setEditorData] = useState("");
+  const [wordCount, setWordCount] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const handleEditorChange = (event, editor) => {
+    const data = editor.getData();
+    setEditorData(data);
 
-  // Calculate character count
-  const characters = text.replace(/\s+/g, ""); // Remove whitespace for character count
-  setCharCount(characters.length);
-};
+    // Calculate word count
+    const text = data.replace(/<[^>]*>/g, ""); // Remove HTML tags
+    const words = text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0);
+    setWordCount(words.length);
+
+    // Calculate character count
+    const characters = text.replace(/\s+/g, ""); // Remove whitespace for character count
+    setCharCount(characters.length);
+  };
   const validateForm = () => {
     const validationErrors = {};
 

@@ -2,7 +2,7 @@ import { Row, Col, Button, Container, Form, Table } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 import { MenuConstants } from "../../../../CommonFiles/constant/MenuConstants";
-// import TotalNSMDataChart from "../../../../CommonFiles/Charts/TotalNSMDataChart";
+import TotalNSMDataChart from "../../../../CommonFiles/Charts/TotalNSMDataChart";
 
 const ISPDashboard = () => {
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ const ISPDashboard = () => {
           <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom">
             {MenuConstants.dashboard}
           </Col>
-          <Row className="mt-2 p-0 ms-0 position-relative">
-            <Row className="backgroundcolorsecondary me-0 ms-0 p-1">
+          <Row className="mt-2  position-relative">
+            <Row className="backgroundcolorsecondary ms-0  p-1">
               <Col
                 xxl={2}
                 xl={2}
@@ -308,7 +308,7 @@ const ISPDashboard = () => {
                   borderRadius: "12px",
                 }}
               >
-                {/* <TotalNSMDataChart/> */}
+                <TotalNSMDataChart />
               </Col>
             </Row>
           </Row>

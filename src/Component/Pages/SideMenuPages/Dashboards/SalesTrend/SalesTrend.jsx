@@ -300,7 +300,7 @@ const SalesTrend = () => {
             </Row>
 
             <Table
-              className="ms-2 mt-2 equal-width-table"
+              className="mt-2 equal-width-table"
               style={{ boxShadow: "2px 4px 8px #DCDCDC" }}
             >
               <thead className=" smallfontsemibold">
@@ -367,7 +367,7 @@ const SalesTrend = () => {
               {/* Right Side: QTY, Switch, and Value */}
             </Row>
             <Table
-              className="ms-2 mt-2 equal-width-table"
+              className="mt-2 equal-width-table"
               style={{ boxShadow: "2px 4px 8px #DCDCDC" }}
             >
               <thead className=" smallfontsemibold">
@@ -430,7 +430,7 @@ const SalesTrend = () => {
               {/* Right Side: QTY, Switch, and Value */}
             </Row>
             <Table
-              className="ms-2 mt-2 equal-width-table"
+              className="mt-2 equal-width-table"
               style={{ boxShadow: "2px 4px 8px #DCDCDC" }}
             >
               <thead className=" smallfontsemibold">

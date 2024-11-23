@@ -302,7 +302,7 @@ const ManageAttendanceDashboard = () => {
               </Col>
             </Row>
             <Table
-              className="ms-2 mt-3 equal-width-table"
+              className=" mt-3 equal-width-table"
               style={{ boxShadow: "2px 4px 8px #DCDCDC" }}
             >
               <thead className=" smallfontsemibold">
@@ -340,7 +340,7 @@ const ManageAttendanceDashboard = () => {
               </tbody>
             </Table>
             <Table
-              className="ms-2 mt-3 equal-width-table"
+              className="mt-3 equal-width-table"
               style={{ boxShadow: "2px 4px 8px #DCDCDC" }}
             >
               <thead className=" smallfontsemibold">

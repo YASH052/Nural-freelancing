@@ -11,7 +11,7 @@ import {
 import { MenuConstants } from "../constant/MenuConstants";
 // import "../App.css";
 
-const SideMenu = () => {
+const SideMenu = ({ showMenu, setShowMenu }) => {
   const navigate = useNavigate();
   const [transactionOpen, setTransactionOpen] = useState(false);
   const [transactionReturnOpen, setTransactionReturnOpen] = useState(false);
@@ -19,9 +19,9 @@ const SideMenu = () => {
   const [competitionOpen, setCompetitionOpen] = useState(false);
   const [learningOpen, setLearningOpen] = useState(false);
   const [bulletinOpen, setBulletinOpen] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+
   const toggleMenu = () => {
-    setShowMenu((prevShowMenu) => !prevShowMenu);
+    setShowMenu((prev) => !prev); // Toggle the `showMenu` state
   };
   const shouldTargethighlight = ["/createtarget", "/viewtarget"].includes(
     location.pathname
@@ -29,39 +29,39 @@ const SideMenu = () => {
   const shouldSurveyhighlight = [
     "/createsurveylink",
     "/createsurveycustomer",
-    "/viewsurvey"
+    "/viewsurvey",
   ].includes(location.pathname);
 
   const shouldISPIncentiveHighlight = ["/createisp", "/ispincentive"].includes(
     location.pathname
   );
-    const shouldReportHighlight = [
-      "/serialnomov",
-      "/primarytotertiarytrack",
-    ].includes(location.pathname);
- const handleTarget = () => {
-   navigate("/createtarget"); // Navigate to the settings route
- };
- const handleManageTask = () => {
-   navigate("/managetask"); // Navigate to the settings route
- };
- const handleReports = () => {
-   navigate("/primarytotertiarytrack"); // Navigate to the settings route
- };
- const handleManageCompetitionData = () => {
-   navigate("/managecompetitiondata"); // Navigate to the settings route
- };
- const handleTaskCategoryMaster = () =>{
-navigate("/taskcategorymaster")
- };
- const handleSurvey = () => {
-    navigate("/createsurveylink"); 
+  const shouldReportHighlight = [
+    "/serialnomov",
+    "/primarytotertiarytrack",
+  ].includes(location.pathname);
+  const handleTarget = () => {
+    navigate("/createtarget"); // Navigate to the settings route
   };
- const handleispincentive = () => {
-   navigate("/createisp"); 
- };
+  const handleManageTask = () => {
+    navigate("/managetask"); // Navigate to the settings route
+  };
+  const handleReports = () => {
+    navigate("/primarytotertiarytrack"); // Navigate to the settings route
+  };
+  const handleManageCompetitionData = () => {
+    navigate("/managecompetitiondata"); // Navigate to the settings route
+  };
+  const handleTaskCategoryMaster = () => {
+    navigate("/taskcategorymaster");
+  };
+  const handleSurvey = () => {
+    navigate("/createsurveylink");
+  };
+  const handleispincentive = () => {
+    navigate("/createisp");
+  };
   const handleattendancedashboard = () => {
-    navigate("/attendancedashboard"); 
+    navigate("/attendancedashboard");
   };
 
   const shouldManageBulletinHighlight = [
@@ -69,8 +69,8 @@ navigate("/taskcategorymaster")
     "/viewbulletin",
   ].includes(location.pathname);
   const shouldManageBulletinCategoryHighlight = [
-     "/managebulletincategory",
-   ].includes(location.pathname);
+    "/managebulletincategory",
+  ].includes(location.pathname);
   const handleBulletinClick = () => {
     setBulletinOpen(!bulletinOpen);
   };
@@ -81,25 +81,25 @@ navigate("/taskcategorymaster")
     navigate("/managebulletincategory");
   };
   const activeStyle = "backgroundcolor p-1 fontcolorwhite"; // Add or modify styles as needed
-const shouldManageAssesmentHighlight = [
-  "/manageassesment",
-  "/viewassesment",
-].includes(location.pathname);
-const shouldLDContentHighlight = [
-  "/viewl&dcontent",
-  "/managel&dcontent",
-].includes(location.pathname);
-const shouldLDCategoryHighlight = [
-  "/managel&dcategory",
-].includes(location.pathname);
+  const shouldManageAssesmentHighlight = [
+    "/manageassesment",
+    "/viewassesment",
+  ].includes(location.pathname);
+  const shouldLDContentHighlight = [
+    "/viewl&dcontent",
+    "/managel&dcontent",
+  ].includes(location.pathname);
+  const shouldLDCategoryHighlight = ["/managel&dcategory"].includes(
+    location.pathname
+  );
 
-const shouldTaskCatHighlight = [
-  "/taskcategorymaster",
-].includes(location.pathname);
-const shouldManageTaskHighlight = ["/managetask"].includes(location.pathname);
-const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
-  location.pathname
-);
+  const shouldTaskCatHighlight = ["/taskcategorymaster"].includes(
+    location.pathname
+  );
+  const shouldManageTaskHighlight = ["/managetask"].includes(location.pathname);
+  const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
+    location.pathname
+  );
 
   const handleManageAssessmentClick = () => {
     navigate("/manageassesment");
@@ -112,8 +112,8 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
   };
   return (
     <Col
-      className={`app-sidemenu-col sidemenuborder col-md-3 col-sm-3 col-lg-2 sidemenubg ${
-        showMenu ? "sidemenuwidth  " : "sidemenubg col-lg-2"
+      className={`app-sidemenu-col sidemenuheight margintop position-fixed sidemenuborder col-md-3 col-sm-3 col-lg-2 sidemenubg ${
+        showMenu ? "sidemenuwidth " : "sidemenubg col-lg-2"
       }`}
     >
       <Col
@@ -134,7 +134,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
       {!showMenu && (
         <>
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2"
+            className="mt-2 cursorpointer mediumfont ms-2"
             onClick={handleattendancedashboard}
           >
             <img
@@ -146,7 +146,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             {MenuConstants.dashboard}
           </Col>
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={() => setTransactionOpen(!transactionOpen)}
           >
             <img
@@ -179,7 +179,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
           )}
           {shouldTargethighlight ? (
             <Col
-              className={`align-items-center d-flex cursorpointer mediumfontbold mt-3 fontcolorwhite app-sidemenu-mainmenu ${
+              className={`align-items-center d-flex cursorpointer mediumfontbold mt-2 fontcolorwhite app-sidemenu-mainmenu ${
                 shouldTargethighlight ? "backgroundcolor" : "sidemenuwidth"
               }`}
             >
@@ -195,7 +195,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </Col>
           ) : (
             <Col
-              className="mt-3 mediumfont ms-2 cursorpointer"
+              className="mt-2 mediumfont ms-2 cursorpointer"
               onClick={handleTarget}
             >
               <img
@@ -209,7 +209,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
           )}
 
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={() => setTransactionReturnOpen(!transactionReturnOpen)}
           >
             <img
@@ -238,7 +238,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
           )}
           {shouldISPIncentiveHighlight ? (
             <Col
-              className={`align-items-center d-flex cursorpointer mediumfontbold mt-3 fontcolorwhite app-sidemenu-mainmenu backgroundcolor`}
+              className={`align-items-center d-flex cursorpointer mediumfontbold mt-2 fontcolorwhite app-sidemenu-mainmenu backgroundcolor`}
             >
               <Col className="ms-2">
                 <img
@@ -252,7 +252,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </Col>
           ) : (
             <Col
-              className="mt-3 mediumfont cursorpointer ms-2"
+              className="mt-2 mediumfont cursorpointer ms-2"
               onClick={handleispincentive}
             >
               <img
@@ -265,7 +265,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </Col>
           )}
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={() => setMerchandizingOpen(!merchandizingOpen)}
           >
             <img
@@ -308,7 +308,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </>
           )}
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={() => setCompetitionOpen(!competitionOpen)}
           >
             <img
@@ -341,7 +341,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </>
           )}
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={() => setLearningOpen(!learningOpen)}
           >
             <img
@@ -391,7 +391,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
           )}
           {shouldSurveyhighlight ? (
             <Col
-              className={`align-items-center d-flex cursorpointer mediumfontbold mt-3 fontcolorwhite app-sidemenu-mainmenu ${
+              className={`align-items-center d-flex cursorpointer mediumfontbold mt-2 fontcolorwhite app-sidemenu-mainmenu ${
                 shouldSurveyhighlight ? "backgroundcolor" : "sidemenuwidth"
               }`}
             >
@@ -407,7 +407,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </Col>
           ) : (
             <Col
-              className="mt-3 mediumfont ms-2 cursorpointer"
+              className="mt-2 mediumfont ms-2 cursorpointer"
               onClick={handleSurvey}
             >
               <img
@@ -420,7 +420,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
             </Col>
           )}
           <Col
-            className="mt-3 cursorpointer mediumfont ms-2 position-relative"
+            className="mt-2 cursorpointer mediumfont ms-2 position-relative"
             onClick={handleBulletinClick}
           >
             <img
@@ -459,7 +459,7 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
               </Col>
             </>
           )}
-          <Col className="mt-3 mediumfont ms-2">
+          <Col className="mt-2 mediumfont ms-2">
             <img
               src="./feedback.png"
               className="me-2"
@@ -471,23 +471,23 @@ const shouldManageCompetitionHighlight = ["/managecompetitiondata"].includes(
 
           {shouldReportHighlight ? (
             <Col
-              className={`align-items-center d-flex cursorpointer  mt-3  app-sidemenu-mainmenu ${
+              className={`align-items-center d-flex cursorpointer  mt-1  app-sidemenu-mainmenu ${
                 shouldReportHighlight ? "" : "sidemenuwidth"
               }`}
             >
-              <Col className="ms-2">
+              <Col className="ms-1 mediumfont">
                 <img
-                  className="me-2 fontcolorwhite"
+                  className="me-2 ms-1 fontcolorwhite"
                   src="./report.png"
                   alt=""
-                  // style={{ width: "20px", height: "20px" }}
+                  style={{ width: "20px", height: "20px" }}
                 />
                 {MenuConstants.reports}
               </Col>
             </Col>
           ) : (
             <Col
-              className="mt-3 mediumfont ms-2 cursorpointer"
+              className="mt-2 mediumfont ms-2 cursorpointer"
               onClick={handleReports}
             >
               <img
