@@ -55,7 +55,7 @@ border-bottom: 2px solid rgb(148, 143, 143);
   max-height: fit-content;
 }
 .marginleft{
-  margin-left: 210px;
+  margin-left: 17%;
 }
 .marginleft2{
   margin-left: 35px;
@@ -76,7 +76,9 @@ border-bottom: 2px solid rgb(148, 143, 143);
 .sidemenuwidth { 
     max-width: 35px;
 }
-
+.sidemenuwidth2 { 
+    max-width: 17%;
+}
 .app-border-radius-none{
   border-radius: 0%;
 }

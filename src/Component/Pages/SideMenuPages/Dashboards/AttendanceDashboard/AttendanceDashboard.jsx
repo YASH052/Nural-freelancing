@@ -95,8 +95,8 @@ const ManageAttendanceDashboard = () => {
           <Col className="mt-1 paddingleft-mastersettings fontcolorblackbold borderbottom">
             {MenuConstants.dashboard}
           </Col>
-          <Row className="mt-2 p-0 ms-0 position-relative">
-            <Row className="backgroundcolorsecondary me-0 ms-0 p-1">
+          <Row className="mt-2 position-relative ms-0 pe-0">
+            <Row className="backgroundcolorsecondary p-1">
               <Col
                 xxl={2}
                 xl={2}

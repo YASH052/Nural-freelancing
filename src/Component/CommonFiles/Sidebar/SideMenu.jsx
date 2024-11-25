@@ -112,8 +112,8 @@ const SideMenu = ({ showMenu, setShowMenu }) => {
   };
   return (
     <Col
-      className={`app-sidemenu-col sidemenuheight margintop position-fixed sidemenuborder col-md-3 col-sm-3 col-lg-2 sidemenubg ${
-        showMenu ? "sidemenuwidth " : "sidemenubg col-lg-2"
+      className={`app-sidemenu-col sidemenuheight margintop  position-fixed sidemenuborder sidemenubg ${
+        showMenu ? "sidemenuwidth " : "sidemenuwidth2"
       }`}
     >
       <Col
